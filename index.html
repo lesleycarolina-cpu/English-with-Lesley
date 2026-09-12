@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>English with Lesley — Live Lesson Toolkit</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EEF1EF;
+    --panel:#FFFFFF;
+    --ink:#1B2A4A;
+    --ink-soft:#4B5A78;
+    --mustard:#D4A017;
+    --coral:#C0392B;
+    --line:#D6DAD8;
+    --sage:#5C7A6E;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:28px 28px;
+    background-position:-1px -1px;
+    font-family:'Inter',sans-serif;
+    color:var(--ink);
+    min-height:100vh;
+  }
+  .app{
+    display:grid;
+    grid-template-columns:230px 1fr;
+    max-width:1200px;
+    margin:24px auto;
+    min-height:640px;
+    background:var(--panel);
+    border:2px solid var(--ink);
+    box-shadow:8px 8px 0 rgba(27,42,74,0.12);
+  }
+  .sidebar{
+    border-right:2px solid var(--ink);
+    padding:22px 0;
+    display:flex;
+    flex-direction:column;
+  }
+  .brand{
+    font-family:'Special Elite',monospace;
+    font-size:1.3rem;
+    padding:0 20px 18px 20px;
+    border-bottom:2px solid var(--ink);
+    margin-bottom:10px;
+    letter-spacing:0.5px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .brand span{color:var(--coral);}
+  .ladybug-logo{
+    flex-shrink:0;
+    overflow:visible;
+  }
+  nav button{
+    display:block;
+    width:100%;
+    text-align:left;
+    padding:13px 20px;
+    background:none;
+    border:none;
+    border-left:4px solid transparent;
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:0.95rem;
+    color:var(--ink-soft);
+    cursor:pointer;
+    transition:background .15s, border-color .15s, color .15s;
+  }
+  nav button:hover{background:#F4F6F5;}
+  nav button.active{
+    color:var(--ink);
+    border-left-color:var(--coral);
+    background:#F4F6F5;
+  }
+  .stamp{
+    margin-top:auto;
+    padding:16px 20px 0 20px;
+    font-size:0.72rem;
+    color:var(--ink-soft);
+    border-top:2px solid var(--line);
+  }
+  main{
+    padding:36px 44px;
+    display:flex;
+    flex-direction:column;
+  }
+  .eyebrow{
+    font-family:'Special Elite',monospace;
+    color:var(--sage);
+    font-size:0.85rem;
+    margin:0 0 6px 0;
+  }
+  h1.stage-title{
+    font-family:'Special Elite',monospace;
+    font-size:1.7rem;
+    margin:0 0 22px 0;
+    color:var(--ink);
+  }
+  .stage{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    min-height:300px;
+    padding:20px;
+  }
+  .card-index{
+    font-size:0.85rem;
+    color:var(--ink-soft);
+    margin-bottom:14px;
+  }
+  .main-text{
+    font-size:2.1rem;
+    font-weight:800;
+    line-height:1.3;
+    max-width:680px;
+  }
+  .sub-text{
+    margin-top:18px;
+    font-size:1.15rem;
+    color:var(--ink-soft);
+    max-width:600px;
+    line-height:1.5;
+  }
+  .tag{
+    display:inline-block;
+    margin-top:16px;
+    padding:4px 12px;
+    border:1.5px solid var(--mustard);
+    color:#8a6b0f;
+    background:#FBF3DE;
+    font-size:0.78rem;
+    font-weight:700;
+    letter-spacing:.3px;
+  }
+  .controls{
+    display:flex;
+    gap:12px;
+    justify-content:center;
+    margin-top:30px;
+    flex-wrap:wrap;
+  }
+  button.action{
+    font-family:'Inter',sans-serif;
+    font-weight:700;
+    font-size:0.95rem;
+    padding:11px 22px;
+    border:2px solid var(--ink);
+    background:var(--ink);
+    color:#fff;
+    cursor:pointer;
+    transition:transform .1s;
+  }
+  button.action.secondary{
+    background:#fff;
+    color:var(--ink);
+  }
+  button.action:hover{transform:translateY(-2px);}
+  button.action:active{transform:translateY(0);}
+  select{
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    padding:9px 12px;
+    border:2px solid var(--ink);
+    background:#fff;
+    color:var(--ink);
+  }
+  .timer-display{
+    font-family:'Special Elite',monospace;
+    font-size:5rem;
+    color:var(--ink);
+  }
+  .timer-display.warn{color:var(--coral);}
+  .scramble-letters{
+    font-family:'Special Elite',monospace;
+    font-size:2.6rem;
+    letter-spacing:8px;
+    color:var(--coral);
+  }
+  .hidden{display:none;}
+  .score{
+    position:absolute;
+    top:16px;
+    right:20px;
+    font-size:0.85rem;
+    font-weight:700;
+    color:var(--sage);
+  }
+  .student-bar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:10px;
+    padding-bottom:16px;
+    margin-bottom:20px;
+    border-bottom:2px dashed var(--line);
+    font-size:0.85rem;
+  }
+  .student-left, .student-right{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+  .student-bar label{
+    font-weight:700;
+    color:var(--ink-soft);
+  }
+  .student-bar select{
+    padding:6px 10px;
+    font-size:0.85rem;
+  }
+  #student-name-input{
+    font-family:'Inter',sans-serif;
+    font-size:0.85rem;
+    padding:6px 10px;
+    border:1.5px solid var(--ink);
+    width:150px;
+  }
+  #student-status{
+    color:var(--coral);
+    font-weight:700;
+    font-size:0.78rem;
+  }
+  .week-label{
+    color:var(--sage);
+    font-weight:700;
+    font-size:0.78rem;
+    border:1.5px dashed var(--sage);
+    padding:4px 10px;
+  }
+  button.mini-btn{
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:0.78rem;
+    padding:6px 12px;
+    border:1.5px solid var(--ink);
+    background:#fff;
+    color:var(--ink);
+    cursor:pointer;
+  }
+  button.mini-btn:hover{background:#F4F6F5;}
+  #student-progress{
+    color:var(--sage);
+    font-weight:700;
+  }
+  .answer-input{
+    font-family:'Inter',sans-serif;
+    font-size:1.05rem;
+    padding:10px 16px;
+    border:2px solid var(--ink);
+    background:#fff;
+    color:var(--ink);
+    width:100%;
+    max-width:480px;
+    margin-top:18px;
+    text-align:center;
+  }
+  .answer-input::placeholder{ color:#9aa3b0; }
+  .answer-input:focus{
+    outline:none;
+    border-color:var(--coral);
+  }
+  .fr-text{
+    color:var(--coral);
+    font-style:italic;
+    font-size:1rem;
+    margin-top:8px;
+  }
+  .fr-text::before{
+    content:"🇫🇷 ";
+    font-style:normal;
+  }
+  .seen-badge{
+    display:inline-block;
+    margin-top:16px;
+    margin-left:8px;
+    padding:4px 12px;
+    border:1.5px solid var(--sage);
+    color:var(--sage);
+    background:#EEF4F1;
+    font-size:0.78rem;
+    font-weight:700;
+  }
+  main{position:relative;}
+  @media (max-width:760px){
+    .app{grid-template-columns:1fr;}
+    .sidebar{border-right:none;border-bottom:2px solid var(--ink);}
+    .main-text{font-size:1.5rem;}
+    .timer-display{font-size:3.2rem;}
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+  <div class="sidebar">
+    <div class="brand">
+      <svg class="ladybug-logo" width="34" height="37" viewBox="0 -10 120 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <ellipse cx="60" cy="70" rx="46" ry="40" fill="#C0392B" stroke="#1B2A4A" stroke-width="4"/>
+        <path d="M60,32 L60,110" stroke="#1B2A4A" stroke-width="4" stroke-linecap="round"/>
+        <path d="M48,10 C40,0 30,-4 24,-6" stroke="#1B2A4A" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <path d="M72,10 C80,0 90,-4 96,-6" stroke="#1B2A4A" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <circle cx="24" cy="-6" r="4.5" fill="#1B2A4A"/>
+        <circle cx="96" cy="-6" r="4.5" fill="#1B2A4A"/>
+        <circle cx="60" cy="26" r="24" fill="#1B2A4A"/>
+        <circle cx="51" cy="22" r="6" fill="#FFFFFF"/>
+        <circle cx="69" cy="22" r="6" fill="#FFFFFF"/>
+        <circle cx="52.5" cy="23.5" r="3" fill="#1B2A4A"/>
+        <circle cx="70.5" cy="23.5" r="3" fill="#1B2A4A"/>
+        <circle cx="39" cy="55" r="8.5" fill="#1B2A4A"/>
+        <circle cx="81" cy="55" r="8.5" fill="#1B2A4A"/>
+        <circle cx="34" cy="86" r="7" fill="#1B2A4A"/>
+        <circle cx="86" cy="86" r="7" fill="#1B2A4A"/>
+        <circle cx="60" cy="98" r="7" fill="#1B2A4A"/>
+        <ellipse cx="42" cy="52" rx="6" ry="4" fill="#FFFFFF" opacity="0.35"/>
+      </svg>
+      English with <span>Lesley</span>
+    </div>
+    <nav>
+      <button class="nav-btn active" data-tab="warmup">Warm‑Up Talk</button>
+      <button class="nav-btn" data-tab="vocab">Vocabulary</button>
+      <button class="nav-btn" data-tab="idiom">Idiom Corner</button>
+      <button class="nav-btn" data-tab="grammar">Grammar Fix</button>
+      <button class="nav-btn" data-tab="scramble">Word Scramble</button>
+      <button class="nav-btn" data-tab="timer">Activity Timer</button>
+    </nav>
+    <div class="stamp">Screen‑share this window during your lesson. Everything runs offline, no login needed.</div>
+  </div>
+
+  <main>
+    <div class="student-bar" id="studentBar">
+      <div class="student-left">
+        <label for="student-select">Student:</label>
+        <select id="student-select"><option value="">Guest (not saved)</option></select>
+        <input type="text" id="student-name-input" placeholder="New student's name" maxlength="30">
+        <button class="mini-btn" id="student-new">+ Add</button>
+        <span id="week-label" class="week-label"></span>
+      </div>
+      <div class="student-right">
+        <span id="student-progress"></span>
+        <span id="student-status"></span>
+        <button class="mini-btn" id="student-export">Save profile</button>
+        <button class="mini-btn" id="student-import-btn">Load profile</button>
+        <input type="file" id="student-import-file" accept="application/json" class="hidden">
+      </div>
+    </div>
+    <div class="score hidden" id="scoreBox">Score: <span id="scoreVal">0</span></div>
+
+    <!-- WARM UP -->
+    <div class="tab-panel" id="panel-warmup">
+      <div class="eyebrow">Warm‑up</div>
+      <h1 class="stage-title">Get them talking</h1>
+      <div class="stage">
+        <div class="card-index" id="warmup-index">Question 1</div>
+        <div class="main-text" id="warmup-text">Loading...</div>
+      </div>
+      <div class="controls">
+        <button class="action secondary" id="warmup-prev">← Previous</button>
+        <button class="action" id="warmup-next">Next question →</button>
+      </div>
+    </div>
+
+    <!-- VOCAB -->
+    <div class="tab-panel hidden" id="panel-vocab">
+      <div class="eyebrow">Vocabulary flashcard</div>
+      <h1 class="stage-title">Build the word bank</h1>
+      <select id="vocab-topic" style="align-self:center; margin-bottom:10px;"></select>
+      <div class="stage">
+        <div class="card-index" id="vocab-index">Card 1</div>
+        <div class="main-text" id="vocab-word">Loading...</div>
+        <input type="text" class="answer-input" id="vocab-guess" placeholder="What do you think it means? (optional)">
+        <div class="sub-text hidden" id="vocab-detail"></div>
+        <div class="sub-text fr-text hidden" id="vocab-fr"></div>
+        <div class="tag hidden" id="vocab-level"></div>
+        <div class="seen-badge hidden" id="vocab-seen">✓ Seen before</div>
+      </div>
+      <div class="controls">
+        <button class="action secondary" id="vocab-flip">Flip card</button>
+        <button class="action" id="vocab-next">Next word →</button>
+      </div>
+    </div>
+
+    <!-- IDIOM -->
+    <div class="tab-panel hidden" id="panel-idiom">
+      <div class="eyebrow">Idiom of the moment</div>
+      <h1 class="stage-title">Sound like a native</h1>
+      <div class="stage">
+        <div class="card-index" id="idiom-index">Idiom 1</div>
+        <div class="main-text" id="idiom-text">Loading...</div>
+        <div class="sub-text hidden" id="idiom-meaning"></div>
+        <div class="sub-text fr-text hidden" id="idiom-fr"></div>
+      </div>
+      <div class="controls">
+        <button class="action secondary" id="idiom-reveal">Reveal meaning</button>
+        <button class="action" id="idiom-next">Next idiom →</button>
+      </div>
+    </div>
+
+    <!-- GRAMMAR -->
+    <div class="tab-panel hidden" id="panel-grammar">
+      <div class="eyebrow">Grammar fix‑it</div>
+      <h1 class="stage-title">Spot and correct</h1>
+      <div class="stage">
+        <div class="card-index" id="grammar-index">Sentence 1</div>
+        <div class="main-text" id="grammar-text">Loading...</div>
+        <input type="text" class="answer-input" id="grammar-guess" placeholder="Type the corrected sentence...">
+        <div class="sub-text hidden" id="grammar-answer"></div>
+        <div class="sub-text fr-text hidden" id="grammar-fr"></div>
+      </div>
+      <div class="controls">
+        <button class="action secondary" id="grammar-reveal">Reveal correction</button>
+        <button class="action" id="grammar-next">Next sentence →</button>
+      </div>
+    </div>
+
+    <!-- SCRAMBLE -->
+    <div class="tab-panel hidden" id="panel-scramble">
+      <div class="eyebrow">Word scramble</div>
+      <h1 class="stage-title">Unscramble the word</h1>
+      <select id="scramble-topic" style="align-self:center; margin-bottom:10px;"></select>
+      <div class="stage">
+        <div class="card-index" id="scramble-hint">Hint: loading...</div>
+        <div class="scramble-letters" id="scramble-letters">------</div>
+        <div class="sub-text hidden" id="scramble-answer"></div>
+      </div>
+      <div class="controls">
+        <button class="action secondary" id="scramble-reveal">Reveal answer</button>
+        <button class="action" id="scramble-correct">They got it! +1</button>
+        <button class="action" id="scramble-next">New word →</button>
+      </div>
+    </div>
+
+    <!-- TIMER -->
+    <div class="tab-panel hidden" id="panel-timer">
+      <div class="eyebrow">Activity timer</div>
+      <h1 class="stage-title">Keep the pace</h1>
+      <div class="stage">
+        <div class="timer-display" id="timer-display">02:00</div>
+        <select id="timer-preset">
+          <option value="60">1 minute — quick answer</option>
+          <option value="120" selected>2 minutes — pair discussion</option>
+          <option value="300">5 minutes — writing task</option>
+          <option value="600">10 minutes — roleplay</option>
+        </select>
+      </div>
+      <div class="controls">
+        <button class="action" id="timer-start">Start</button>
+        <button class="action secondary" id="timer-pause">Pause</button>
+        <button class="action secondary" id="timer-reset">Reset</button>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+// ---------- DATA ----------
+const warmups = [
+  "If you could have dinner with anyone alive today, who would it be and why?",
+  "What's a small thing that made you smile this week?",
+  "Describe your ideal Sunday morning in three sentences.",
+  "What's a skill you'd love to learn, and what's stopping you?",
+  "Tell me about a time you got completely lost.",
+  "What's the best advice a stranger ever gave you?",
+  "If you had to eat one meal for the rest of your life, what would it be?",
+  "What does 'success' mean to you personally?",
+  "Describe your hometown to someone who has never heard of it.",
+  "What's a habit you're proud of building?",
+  "If you won a free trip anywhere, where would you go first?",
+  "What's something you believed as a child that turned out to be wrong?",
+  "Tell me about a book, film, or show that changed how you think.",
+  "What's your favorite way to spend a rainy day?",
+  "If you could instantly speak one new language fluently, which would you choose and why?"
+];
+
+const vocabTopics = {
+  "General Everyday": [
+    {w:"Meticulous", p:"adjective", d:"Very careful and precise about details.", ex:"She's meticulous about checking her emails before sending.", lvl:"Upper-Intermediate", fr:"méticuleux — très soigné et précis dans les détails."},
+    {w:"Procrastinate", p:"verb", d:"To delay doing something you should be doing.", ex:"I always procrastinate before big deadlines.", lvl:"Intermediate", fr:"procrastiner — remettre à plus tard ce qu'on devrait faire."},
+    {w:"Resilient", p:"adjective", d:"Able to recover quickly from difficulties.", ex:"Small businesses had to be resilient during the crisis.", lvl:"Upper-Intermediate", fr:"résilient — capable de se remettre rapidement des difficultés."},
+    {w:"Candid", p:"adjective", d:"Truthful and straightforward; frank.", ex:"He gave a candid answer about the company's problems.", lvl:"Advanced", fr:"franc, sincère — direct et honnête (attention, pas « candide »)."},
+    {w:"Overwhelmed", p:"adjective", d:"Having too much to deal with.", ex:"She felt overwhelmed by all the paperwork.", lvl:"Intermediate", fr:"submergé, débordé — avoir trop de choses à gérer."},
+    {w:"Genuine", p:"adjective", d:"Real and sincere, not fake.", ex:"His apology sounded genuine.", lvl:"Intermediate", fr:"authentique, sincère — vrai, pas faux."},
+    {w:"Ambiguous", p:"adjective", d:"Open to more than one interpretation; unclear.", ex:"The instructions were ambiguous, so everyone did something different.", lvl:"Advanced", fr:"ambigu — qui peut être compris de plusieurs façons."},
+    {w:"Thrifty", p:"adjective", d:"Careful with money; not wasteful.", ex:"My grandmother was famously thrifty.", lvl:"Intermediate", fr:"économe — qui fait attention à l'argent."},
+    {w:"Reluctant", p:"adjective", d:"Unwilling to do something.", ex:"He was reluctant to speak in front of the group.", lvl:"Intermediate", fr:"réticent — peu disposé à faire quelque chose."},
+    {w:"Versatile", p:"adjective", d:"Able to adapt to many different functions or situations.", ex:"Olive oil is a versatile ingredient.", lvl:"Upper-Intermediate", fr:"polyvalent — qui s'adapte à plusieurs usages."}
+  ],
+  "Business English": [
+    {w:"Leverage", p:"verb", d:"To use something to maximum advantage.", ex:"We need to leverage our existing customer base.", lvl:"Upper-Intermediate", fr:"tirer parti de, exploiter — utiliser au maximum de son avantage."},
+    {w:"Streamline", p:"verb", d:"To make a process simpler and more efficient.", ex:"The new software will streamline our invoicing.", lvl:"Upper-Intermediate", fr:"rationaliser, simplifier — rendre un processus plus efficace."},
+    {w:"Stakeholder", p:"noun", d:"A person with an interest or investment in a business.", ex:"We presented the results to all key stakeholders.", lvl:"Intermediate", fr:"partie prenante — personne concernée par une entreprise."},
+    {w:"Bottleneck", p:"noun", d:"A point of congestion that slows a process down.", ex:"Approval from legal is the main bottleneck right now.", lvl:"Upper-Intermediate", fr:"goulot d'étranglement — point qui ralentit tout un processus."},
+    {w:"Onboard", p:"verb", d:"To integrate a new employee or client into a company.", ex:"HR will onboard the new hires next Monday.", lvl:"Intermediate", fr:"intégrer — accueillir et former un nouvel employé."},
+    {w:"Negotiate", p:"verb", d:"To discuss something to reach an agreement.", ex:"They negotiated a lower price with the supplier.", lvl:"Intermediate", fr:"négocier — discuter pour arriver à un accord."},
+    {w:"Revenue", p:"noun", d:"Income generated from business activities.", ex:"Revenue grew by 12% this quarter.", lvl:"Intermediate", fr:"chiffre d'affaires, revenu — l'argent généré par une entreprise."},
+    {w:"Delegate", p:"verb", d:"To give a task or responsibility to someone else.", ex:"A good manager knows how to delegate.", lvl:"Intermediate", fr:"déléguer — confier une tâche à quelqu'un d'autre."},
+    {w:"Forecast", p:"verb/noun", d:"To predict future trends, especially financial ones.", ex:"Our sales forecast looks strong for next year.", lvl:"Intermediate", fr:"prévision, prévoir — anticiper des tendances futures."},
+    {w:"Synergy", p:"noun", d:"Combined effect greater than the sum of individual parts.", ex:"The merger created real synergy between the two teams.", lvl:"Advanced", fr:"synergie — effet combiné supérieur à la somme des parties."}
+  ],
+  "Travel": [
+    {w:"Itinerary", p:"noun", d:"A planned route or schedule for a trip.", ex:"Can you send me the full itinerary before we leave?", lvl:"Intermediate", fr:"itinéraire — le programme prévu d'un voyage."},
+    {w:"Layover", p:"noun", d:"A short stop between flights.", ex:"We have a three-hour layover in Amsterdam.", lvl:"Intermediate", fr:"escale — un arrêt court entre deux vols."},
+    {w:"Accommodation", p:"noun", d:"A place to stay, like a hotel or hostel.", ex:"The accommodation was cheap but very comfortable.", lvl:"Intermediate", fr:"hébergement — un endroit où loger."},
+    {w:"Souvenir", p:"noun", d:"An object you keep to remember a trip.", ex:"I bought a small souvenir from the market.", lvl:"Beginner", fr:"souvenir — un objet qu'on garde pour se rappeler un voyage."},
+    {w:"Jet lag", p:"noun", d:"Tiredness caused by crossing time zones quickly.", ex:"It took me two days to recover from jet lag.", lvl:"Intermediate", fr:"décalage horaire — la fatigue causée par un changement de fuseau horaire."},
+    {w:"Off the beaten path", p:"phrase", d:"Somewhere not commonly visited by tourists.", ex:"We tried to find restaurants off the beaten path.", lvl:"Upper-Intermediate", fr:"hors des sentiers battus — peu fréquenté par les touristes."},
+    {w:"Customs", p:"noun", d:"The airport area where officials check goods entering a country.", ex:"We waited twenty minutes at customs.", lvl:"Intermediate", fr:"la douane — le contrôle des marchandises à l'entrée d'un pays."},
+    {w:"Excursion", p:"noun", d:"A short trip taken for pleasure, often organized.", ex:"The hotel offers a boat excursion every Saturday.", lvl:"Upper-Intermediate", fr:"excursion — une sortie courte, souvent organisée."},
+    {w:"Backpacking", p:"noun", d:"Traveling cheaply carrying your belongings in a backpack.", ex:"She went backpacking through South America after university.", lvl:"Intermediate", fr:"voyager sac au dos — voyager à petit budget avec un sac à dos."},
+    {w:"Currency exchange", p:"noun", d:"Converting one country's money into another's.", ex:"There's a currency exchange booth near the exit.", lvl:"Intermediate", fr:"bureau de change — convertir une monnaie en une autre."}
+  ],
+  "Technology": [
+    {w:"Glitch", p:"noun", d:"A small, temporary malfunction in a system.", ex:"There's a glitch in the app that crashes on login.", lvl:"Intermediate", fr:"bug, dysfonctionnement — un petit problème technique passager."},
+    {w:"Upload", p:"verb", d:"To send data from your device to the internet.", ex:"I forgot to upload the file before the meeting.", lvl:"Beginner", fr:"téléverser, mettre en ligne — envoyer des données vers internet."},
+    {w:"Backup", p:"noun/verb", d:"A copy of data kept in case the original is lost.", ex:"Always keep a backup of your important documents.", lvl:"Beginner", fr:"sauvegarde — une copie de secours de vos données."},
+    {w:"Firewall", p:"noun", d:"A system that protects a network from unauthorized access.", ex:"The company firewall blocked the suspicious email.", lvl:"Intermediate", fr:"pare-feu — un système qui protège un réseau."},
+    {w:"Bandwidth", p:"noun", d:"The capacity of a network to transfer data.", ex:"Video calls use a lot of bandwidth.", lvl:"Intermediate", fr:"bande passante — la capacité de transfert de données d'un réseau."},
+    {w:"User-friendly", p:"adjective", d:"Easy for people to use, especially technology.", ex:"The new interface is much more user-friendly.", lvl:"Intermediate", fr:"convivial, facile à utiliser."},
+    {w:"Outdated", p:"adjective", d:"No longer current or up to date.", ex:"Our software is outdated and needs an upgrade.", lvl:"Intermediate", fr:"obsolète, dépassé — qui n'est plus à jour."},
+    {w:"Troubleshoot", p:"verb", d:"To identify and fix a problem in a system.", ex:"IT helped me troubleshoot the connection issue.", lvl:"Upper-Intermediate", fr:"dépanner — identifier et résoudre un problème technique."},
+    {w:"Cloud storage", p:"noun", d:"Saving data on remote servers accessed via the internet.", ex:"We moved everything to cloud storage last year.", lvl:"Intermediate", fr:"stockage en nuage (cloud) — sauvegarder des données à distance."},
+    {w:"Malware", p:"noun", d:"Software designed to damage or disrupt a computer.", ex:"The email contained a link to malware.", lvl:"Intermediate", fr:"logiciel malveillant — un programme conçu pour nuire à un ordinateur."}
+  ],
+  "Health & Wellness": [
+    {w:"Fatigue", p:"noun", d:"Extreme tiredness.", ex:"He's been suffering from fatigue after long shifts.", lvl:"Intermediate", fr:"fatigue — une grande lassitude physique."},
+    {w:"Recover", p:"verb", d:"To return to a normal state after illness or injury.", ex:"It took her a month to fully recover from the flu.", lvl:"Beginner", fr:"se rétablir, guérir — retrouver un état normal après une maladie."},
+    {w:"Nutritious", p:"adjective", d:"Containing substances the body needs to be healthy.", ex:"Try to eat more nutritious meals during the week.", lvl:"Intermediate", fr:"nutritif — qui apporte ce dont le corps a besoin."},
+    {w:"Chronic", p:"adjective", d:"Lasting a long time; persistent.", ex:"He manages a chronic back condition.", lvl:"Upper-Intermediate", fr:"chronique — qui dure longtemps, persistant."},
+    {w:"Symptom", p:"noun", d:"A sign that indicates the presence of an illness.", ex:"A sore throat is a common cold symptom.", lvl:"Intermediate", fr:"symptôme — un signe qui indique une maladie."},
+    {w:"Well-being", p:"noun", d:"The state of being comfortable, healthy, and happy.", ex:"The company introduced a program to support employee well-being.", lvl:"Intermediate", fr:"bien-être — un état de confort, de santé et de bonheur."},
+    {w:"Sedentary", p:"adjective", d:"Involving a lot of sitting; not physically active.", ex:"Many office jobs are quite sedentary.", lvl:"Advanced", fr:"sédentaire — qui implique de rester assis, peu actif."},
+    {w:"Prescription", p:"noun", d:"A doctor's written instruction for medicine.", ex:"I need to pick up my prescription from the pharmacy.", lvl:"Intermediate", fr:"ordonnance — les instructions écrites d'un médecin."},
+    {w:"Stress relief", p:"noun", d:"Activities or methods used to reduce stress.", ex:"Yoga is her favorite form of stress relief.", lvl:"Intermediate", fr:"soulagement du stress — des activités pour réduire le stress."},
+    {w:"Immune system", p:"noun", d:"The body's defense against illness and infection.", ex:"Vitamin C is said to support the immune system.", lvl:"Intermediate", fr:"système immunitaire — la défense du corps contre les maladies."}
+  ],
+  "Social & Emotions": [
+    {w:"Awkward", p:"adjective", d:"Causing embarrassment or discomfort in a social situation.", ex:"There was an awkward silence after the joke.", lvl:"Intermediate", fr:"gênant, maladroit — qui met mal à l'aise."},
+    {w:"Empathy", p:"noun", d:"The ability to understand and share another person's feelings.", ex:"Good teachers show empathy toward struggling students.", lvl:"Upper-Intermediate", fr:"empathie — la capacité de comprendre les sentiments des autres."},
+    {w:"Overreact", p:"verb", d:"To respond to something with more emotion than necessary.", ex:"I think you're overreacting to a small mistake.", lvl:"Intermediate", fr:"réagir de façon excessive — répondre avec trop d'émotion."},
+    {w:"Reassure", p:"verb", d:"To say or do something to remove someone's doubts or fears.", ex:"She reassured him that everything would be fine.", lvl:"Upper-Intermediate", fr:"rassurer — apaiser les doutes ou les peurs de quelqu'un."},
+    {w:"Grudge", p:"noun", d:"A lasting feeling of resentment toward someone.", ex:"He still holds a grudge over that argument.", lvl:"Upper-Intermediate", fr:"rancune — un ressentiment durable envers quelqu'un."},
+    {w:"Considerate", p:"adjective", d:"Careful not to cause inconvenience or hurt to others.", ex:"It was very considerate of you to call ahead.", lvl:"Intermediate", fr:"attentionné, prévenant — qui évite de gêner les autres."},
+    {w:"Vent", p:"verb", d:"To express strong feelings, especially frustration, freely.", ex:"She just needed to vent about her day.", lvl:"Intermediate", fr:"se défouler, exprimer ses frustrations."},
+    {w:"Sympathize", p:"verb", d:"To feel or express understanding for someone's difficulty.", ex:"I really sympathize with what you're going through.", lvl:"Upper-Intermediate", fr:"compatir — partager la difficulté de quelqu'un."},
+    {w:"Small talk", p:"noun", d:"Light, polite conversation about unimportant topics.", ex:"We made small talk while waiting for the bus.", lvl:"Beginner", fr:"bavardage léger, banalités — une conversation polie sans importance."},
+    {w:"Bond", p:"verb/noun", d:"To form a close connection with someone.", ex:"The trip really helped the team bond.", lvl:"Intermediate", fr:"créer un lien — établir une relation proche."}
+  ],
+  "Academic English": [
+    {w:"Analyze", p:"verb", d:"To examine something in detail to understand it.", ex:"The essay analyzes the causes of the war.", lvl:"Intermediate", fr:"analyser — examiner en détail pour comprendre."},
+    {w:"Hypothesis", p:"noun", d:"An idea proposed as a starting point for further investigation.", ex:"Her hypothesis was tested through three experiments.", lvl:"Upper-Intermediate", fr:"hypothèse — une idée de départ à vérifier."},
+    {w:"Cite", p:"verb", d:"To quote a source as evidence for an argument.", ex:"Make sure you cite your sources correctly.", lvl:"Intermediate", fr:"citer — mentionner une source comme preuve."},
+    {w:"Coherent", p:"adjective", d:"Logical and consistent; easy to follow.", ex:"Her argument was clear and coherent.", lvl:"Upper-Intermediate", fr:"cohérent — logique et facile à suivre."},
+    {w:"Plagiarism", p:"noun", d:"Using someone else's work without giving credit.", ex:"The university has a strict policy against plagiarism.", lvl:"Upper-Intermediate", fr:"plagiat — utiliser le travail d'un autre sans le citer."},
+    {w:"Curriculum", p:"noun", d:"The subjects that make up a course of study.", ex:"The new curriculum includes more critical thinking skills.", lvl:"Intermediate", fr:"programme d'études — l'ensemble des matières enseignées."},
+    {w:"Peer review", p:"noun", d:"Evaluation of work by others in the same field.", ex:"The paper went through peer review before publication.", lvl:"Advanced", fr:"évaluation par les pairs — un travail jugé par des collègues du même domaine."},
+    {w:"Thesis", p:"noun", d:"A statement or theory put forward to be supported.", ex:"His thesis argues that language shapes thought.", lvl:"Upper-Intermediate", fr:"thèse — une affirmation ou théorie à défendre."},
+    {w:"Elaborate", p:"verb", d:"To explain something in more detail.", ex:"Could you elaborate on your last point?", lvl:"Intermediate", fr:"développer, préciser — expliquer plus en détail."},
+    {w:"Rigorous", p:"adjective", d:"Extremely thorough and careful.", ex:"The research followed a rigorous methodology.", lvl:"Advanced", fr:"rigoureux — extrêmement précis et méthodique."}
+  ],
+  "Job Interviews": [
+    {w:"Qualifications", p:"noun", d:"Skills or achievements that make someone suitable for a job.", ex:"Her qualifications make her a strong candidate.", lvl:"Intermediate", fr:"qualifications — les compétences qui rendent quelqu'un apte à un poste."},
+    {w:"Strength", p:"noun", d:"A quality that gives someone an advantage.", ex:"One of my strengths is problem-solving.", lvl:"Beginner", fr:"point fort — une qualité qui donne un avantage."},
+    {w:"Weakness", p:"noun", d:"An area someone could improve on.", ex:"I sometimes struggle to say no, that's a weakness of mine.", lvl:"Beginner", fr:"point faible — un domaine à améliorer."},
+    {w:"Follow up", p:"verb", d:"To contact someone again after an initial meeting.", ex:"I'll follow up with an email after the interview.", lvl:"Intermediate", fr:"faire un suivi, relancer — recontacter après un premier échange."},
+    {w:"Salary expectations", p:"noun", d:"The pay a candidate hopes to receive.", ex:"What are your salary expectations for this role?", lvl:"Intermediate", fr:"prétentions salariales — le salaire souhaité par un candidat."},
+    {w:"Team player", p:"noun", d:"Someone who works well with others.", ex:"They're looking for a strong team player.", lvl:"Beginner", fr:"esprit d'équipe — quelqu'un qui travaille bien avec les autres."},
+    {w:"Prior experience", p:"noun", d:"Work done in the past relevant to a new role.", ex:"Do you have any prior experience in sales?", lvl:"Intermediate", fr:"expérience préalable — un travail antérieur pertinent."},
+    {w:"Notice period", p:"noun", d:"The time an employee must work after resigning before leaving.", ex:"My notice period is one month.", lvl:"Upper-Intermediate", fr:"préavis — la période à travailler après une démission."},
+    {w:"Reference", p:"noun", d:"A person who can vouch for your work or character.", ex:"Can you provide two professional references?", lvl:"Intermediate", fr:"référence — une personne qui peut témoigner en votre faveur."},
+    {w:"Job offer", p:"noun", d:"A formal proposal of employment.", ex:"She received a job offer the next day.", lvl:"Beginner", fr:"offre d'emploi — une proposition formelle d'embauche."}
+  ],
+  "Restaurant & Food": [
+    {w:"Reservation", p:"noun", d:"An arrangement to have a table held for you in advance.", ex:"I made a reservation for two at 8 PM.", lvl:"Beginner", fr:"réservation — retenir une table à l'avance."},
+    {w:"Appetizer", p:"noun", d:"A small dish served before the main course.", ex:"We shared an appetizer while we waited.", lvl:"Beginner", fr:"entrée — un petit plat servi avant le plat principal."},
+    {w:"Bland", p:"adjective", d:"Lacking strong flavor.", ex:"The soup was a bit bland, so I added salt.", lvl:"Intermediate", fr:"fade — qui manque de goût."},
+    {w:"Tender", p:"adjective", d:"Soft and easy to chew or cut, especially meat.", ex:"The steak was incredibly tender.", lvl:"Intermediate", fr:"tendre — facile à mâcher ou à couper."},
+    {w:"Complimentary", p:"adjective", d:"Given free of charge.", ex:"The bread was complimentary with every meal.", lvl:"Upper-Intermediate", fr:"offert, gratuit."},
+    {w:"Substitute", p:"verb", d:"To replace one thing with another.", ex:"Can I substitute the fries for a salad?", lvl:"Intermediate", fr:"remplacer, substituer."},
+    {w:"Split the bill", p:"phrase", d:"To divide the cost of a meal among diners.", ex:"Let's just split the bill evenly.", lvl:"Intermediate", fr:"partager l'addition — diviser le coût du repas."},
+    {w:"Signature dish", p:"noun", d:"A dish a restaurant or chef is especially known for.", ex:"The lamb curry is the chef's signature dish.", lvl:"Upper-Intermediate", fr:"plat signature — le plat pour lequel un restaurant est connu."},
+    {w:"Take-out", p:"noun", d:"Food bought at a restaurant to eat elsewhere.", ex:"We ordered take-out instead of cooking tonight.", lvl:"Beginner", fr:"à emporter — de la nourriture achetée pour manger ailleurs."},
+    {w:"Allergic", p:"adjective", d:"Having a bad reaction to a certain food or substance.", ex:"I'm allergic to shellfish, so I'll skip that dish.", lvl:"Intermediate", fr:"allergique — qui a une mauvaise réaction à un aliment."}
+  ],
+  "Dating & Relationships": [
+    {w:"Hit it off", p:"phrase", d:"To immediately like and get along with someone.", ex:"We hit it off right from the first date.", lvl:"Upper-Intermediate", fr:"bien s'entendre dès le début — sympathiser immédiatement."},
+    {w:"Committed", p:"adjective", d:"Dedicated to a relationship or cause.", ex:"They've been in a committed relationship for two years.", lvl:"Intermediate", fr:"engagé — dévoué à une relation."},
+    {w:"Compatible", p:"adjective", d:"Able to exist or work well together.", ex:"We're very compatible when it comes to humor.", lvl:"Upper-Intermediate", fr:"compatible — qui s'accorde bien avec quelqu'un."},
+    {w:"Breakup", p:"noun", d:"The end of a romantic relationship.", ex:"She's still getting over the breakup.", lvl:"Intermediate", fr:"rupture — la fin d'une relation amoureuse."},
+    {w:"Long-distance", p:"adjective", d:"Describing a relationship where partners live far apart.", ex:"They managed a long-distance relationship for a year.", lvl:"Intermediate", fr:"à distance — une relation où les partenaires vivent loin l'un de l'autre."},
+    {w:"Trust issues", p:"noun", d:"Difficulty trusting others, often from past experience.", ex:"After his last relationship, he developed trust issues.", lvl:"Upper-Intermediate", fr:"problèmes de confiance — une difficulté à faire confiance."},
+    {w:"Butterflies", p:"noun", d:"A nervous, excited feeling, often from attraction.", ex:"I still get butterflies when I see him.", lvl:"Intermediate", fr:"papillons dans le ventre — une sensation nerveuse et excitée."},
+    {w:"Commitment-phobic", p:"adjective", d:"Afraid of committing to a serious relationship.", ex:"He admits he's a bit commitment-phobic.", lvl:"Advanced", fr:"qui a peur de l'engagement."},
+    {w:"Soulmate", p:"noun", d:"A person ideally suited to another as a close companion.", ex:"She believes everyone has a soulmate.", lvl:"Intermediate", fr:"âme sœur — la personne idéale pour vous."},
+    {w:"Red flag", p:"noun", d:"A warning sign that something may be wrong.", ex:"Ignoring your messages for days is a red flag.", lvl:"Upper-Intermediate", fr:"signal d'alarme — un signe qu'il y a un problème."}
+  ]
+};
+let currentVocabTopic = "General Everyday";
+let vocab = vocabTopics[currentVocabTopic];
+
+const idioms = [
+  {t:"Break the ice", m:"To do or say something to make people feel more comfortable, especially at the start of a meeting.", fr:"briser la glace — détendre l'atmosphère au début d'une rencontre."},
+  {t:"Hit the nail on the head", m:"To describe exactly the truth about something.", fr:"mettre le doigt dessus, taper dans le mille — dire exactement la vérité."},
+  {t:"Under the weather", m:"Feeling slightly ill.", fr:"patraque, pas dans son assiette — se sentir légèrement malade."},
+  {t:"Bite the bullet", m:"To force yourself to do something unpleasant that you have been avoiding.", fr:"serrer les dents — se résigner à faire quelque chose de désagréable."},
+  {t:"Once in a blue moon", m:"Something that happens very rarely.", fr:"tous les trente-six du mois — très rarement."},
+  {t:"Cost an arm and a leg", m:"To be very expensive.", fr:"coûter les yeux de la tête — être très cher."},
+  {t:"Get the ball rolling", m:"To start something happening.", fr:"lancer les choses — faire démarrer quelque chose."},
+  {t:"On the same page", m:"To agree with someone or understand a situation the same way.", fr:"être sur la même longueur d'onde — être d'accord."},
+  {t:"Cut corners", m:"To do something in the easiest or cheapest way, often lowering quality.", fr:"rogner sur la qualité, bâcler — faire au plus simple, au détriment de la qualité."},
+  {t:"Speak of the devil", m:"Said when a person you were just talking about suddenly appears.", fr:"quand on parle du loup — dit quand une personne dont on parlait apparaît."}
+];
+
+const grammarItems = [
+  {q:"She don't like coffee in the morning.", a:"She doesn't like coffee in the morning.", fr:"Elle n'aime pas le café le matin."},
+  {q:"I have been to Paris last year.", a:"I went to Paris last year.", fr:"Je suis allé(e) à Paris l'année dernière."},
+  {q:"He is agree with the plan.", a:"He agrees with the plan.", fr:"Il est d'accord avec le plan."},
+  {q:"There is many reasons to celebrate.", a:"There are many reasons to celebrate.", fr:"Il y a beaucoup de raisons de célébrer."},
+  {q:"I'm looking forward to see you.", a:"I'm looking forward to seeing you.", fr:"J'ai hâte de te voir."},
+  {q:"She is married with a doctor.", a:"She is married to a doctor.", fr:"Elle est mariée à un médecin."},
+  {q:"Can you explain me the problem?", a:"Can you explain the problem to me?", fr:"Peux-tu m'expliquer le problème ?"},
+  {q:"I've been working here since three years.", a:"I've been working here for three years.", fr:"Je travaille ici depuis trois ans."},
+  {q:"He said me he was tired.", a:"He told me he was tired.", fr:"Il m'a dit qu'il était fatigué."},
+  {q:"Yesterday, I have finished the report.", a:"Yesterday, I finished the report.", fr:"Hier, j'ai terminé le rapport."}
+];
+
+// ---------- WEEKLY ROTATION ----------
+// Content set rotates automatically every Sunday, starting Sept 13, 2026.
+// No manual updates needed — the starting point in each list just shifts by one each week.
+const WEEK_ANCHOR = new Date(2026, 8, 13); // Sept 13, 2026 (month is 0-indexed)
+function getWeekIndex(){
+  const now = new Date();
+  const diffMs = now - WEEK_ANCHOR;
+  const week = Math.floor(diffMs / (7 * 24 * 60 * 60 * 1000));
+  return week < 0 ? 0 : week;
+}
+function getWeekStartLabel(){
+  const weekIdx = getWeekIndex();
+  const start = new Date(WEEK_ANCHOR.getTime() + weekIdx * 7 * 24 * 60 * 60 * 1000);
+  return start.toLocaleDateString(undefined, { month:'short', day:'numeric', year:'numeric' });
+}
+const weekIndex = getWeekIndex();
+
+// ---------- STATE ----------
+let warmupIdx = weekIndex % warmups.length;
+let vocabIdx = weekIndex % vocabTopics["General Everyday"].length;
+let idiomIdx = weekIndex % idioms.length;
+let grammarIdx = weekIndex % grammarItems.length;
+let scrambleWord = "";
+let timerSeconds = 120, timerInterval = null;
+
+// ---------- STUDENT PROFILES ----------
+// Kept in memory only (this file runs standalone, outside browser-storage-restricted
+// contexts, but we avoid relying on persistence — use Save/Load profile instead).
+let students = {};          // { name: { seen: { topic: [words] }, score: number } }
+let currentStudent = "";    // "" = Guest, not tracked
+
+function ensureStudent(name){
+  if(!students[name]) students[name] = { seen:{}, score:0 };
+  return students[name];
+}
+function refreshStudentSelect(){
+  const sel = document.getElementById('student-select');
+  const prev = sel.value;
+  sel.innerHTML = '<option value="">Guest (not saved)</option>';
+  Object.keys(students).forEach(name=>{
+    const o = document.createElement('option');
+    o.value = name; o.textContent = name;
+    sel.appendChild(o);
+  });
+  sel.value = students[prev] ? prev : "";
+}
+function showStatus(msg){
+  const el = document.getElementById('student-status');
+  el.textContent = msg;
+  clearTimeout(showStatus._t);
+  showStatus._t = setTimeout(()=>{ el.textContent = ""; }, 3000);
+}
+document.getElementById('student-select').addEventListener('change', (e)=>{
+  currentStudent = e.target.value;
+  showVocab();
+  updateScoreDisplay();
+});
+function addStudentFromInput(){
+  const input = document.getElementById('student-name-input');
+  const clean = input.value.trim();
+  if(!clean){ showStatus("Type a name first."); return; }
+  ensureStudent(clean);
+  currentStudent = clean;
+  refreshStudentSelect();
+  document.getElementById('student-select').value = clean;
+  input.value = "";
+  showVocab();
+  updateScoreDisplay();
+  showStatus(`Added "${clean}".`);
+}
+document.getElementById('student-new').addEventListener('click', addStudentFromInput);
+document.getElementById('student-name-input').addEventListener('keydown', (e)=>{
+  if(e.key === 'Enter'){ e.preventDefault(); addStudentFromInput(); }
+});
+document.getElementById('student-export').addEventListener('click', ()=>{
+  if(!currentStudent){ showStatus("Select or add a student first."); return; }
+  const data = JSON.stringify({ name: currentStudent, profile: students[currentStudent] }, null, 2);
+  const blob = new Blob([data], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `${currentStudent.replace(/\s+/g,'_')}-profile.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+  showStatus("Profile saved.");
+});
+document.getElementById('student-import-btn').addEventListener('click', ()=>{
+  document.getElementById('student-import-file').click();
+});
+document.getElementById('student-import-file').addEventListener('change', (e)=>{
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = (evt)=>{
+    try{
+      const parsed = JSON.parse(evt.target.result);
+      if(!parsed.name || !parsed.profile) throw new Error("bad file");
+      students[parsed.name] = parsed.profile;
+      currentStudent = parsed.name;
+      refreshStudentSelect();
+      document.getElementById('student-select').value = parsed.name;
+      showVocab();
+      updateScoreDisplay();
+      showStatus(`Loaded "${parsed.name}".`);
+    }catch(err){
+      showStatus("Couldn't read that profile file.");
+    }
+  };
+  reader.readAsText(file);
+  e.target.value = "";
+});
+function markWordSeen(topic, word){
+  if(!currentStudent) return;
+  const s = ensureStudent(currentStudent);
+  if(!s.seen[topic]) s.seen[topic] = [];
+  if(!s.seen[topic].includes(word)) s.seen[topic].push(word);
+  updateProgressDisplay();
+}
+function isWordSeen(topic, word){
+  if(!currentStudent) return false;
+  const s = students[currentStudent];
+  return !!(s && s.seen[topic] && s.seen[topic].includes(word));
+}
+function updateProgressDisplay(){
+  const el = document.getElementById('student-progress');
+  if(!currentStudent){ el.textContent = ""; return; }
+  const s = ensureStudent(currentStudent);
+  const seenCount = (s.seen[currentVocabTopic] || []).length;
+  const total = vocabTopics[currentVocabTopic].length;
+  el.textContent = `${currentStudent}: ${seenCount}/${total} words seen in ${currentVocabTopic}`;
+}
+let guestScore = 0;
+function updateScoreDisplay(){
+  const s = currentStudent ? ensureStudent(currentStudent) : { score: guestScore };
+  document.getElementById('scoreVal').textContent = s.score;
+}
+
+// ---------- NAV ----------
+document.querySelectorAll('.nav-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p=>p.classList.add('hidden'));
+    btn.classList.add('active');
+    document.getElementById('panel-'+btn.dataset.tab).classList.remove('hidden');
+    document.getElementById('scoreBox').classList.toggle('hidden', btn.dataset.tab!=='scramble');
+  });
+});
+
+// ---------- WARM UP ----------
+function showWarmup(){
+  document.getElementById('warmup-index').textContent = `Question ${warmupIdx+1} of ${warmups.length}`;
+  document.getElementById('warmup-text').textContent = warmups[warmupIdx];
+}
+document.getElementById('warmup-next').onclick = ()=>{ warmupIdx = (warmupIdx+1)%warmups.length; showWarmup(); };
+document.getElementById('warmup-prev').onclick = ()=>{ warmupIdx = (warmupIdx-1+warmups.length)%warmups.length; showWarmup(); };
+
+// ---------- VOCAB ----------
+function showVocab(){
+  const v = vocab[vocabIdx];
+  document.getElementById('vocab-index').textContent = `Card ${vocabIdx+1} of ${vocab.length}`;
+  document.getElementById('vocab-word').textContent = v.w;
+  document.getElementById('vocab-detail').textContent = `(${v.p}) ${v.d}  —  "${v.ex}"`;
+  document.getElementById('vocab-detail').classList.add('hidden');
+  document.getElementById('vocab-fr').textContent = v.fr || "";
+  document.getElementById('vocab-fr').classList.add('hidden');
+  document.getElementById('vocab-level').textContent = v.lvl;
+  document.getElementById('vocab-level').classList.add('hidden');
+  document.getElementById('vocab-seen').classList.toggle('hidden', !isWordSeen(currentVocabTopic, v.w));
+  document.getElementById('vocab-guess').value = "";
+  updateProgressDisplay();
+}
+document.getElementById('vocab-flip').onclick = ()=>{
+  document.getElementById('vocab-detail').classList.remove('hidden');
+  document.getElementById('vocab-level').classList.remove('hidden');
+  document.getElementById('vocab-fr').classList.remove('hidden');
+  const v = vocab[vocabIdx];
+  markWordSeen(currentVocabTopic, v.w);
+  document.getElementById('vocab-seen').classList.remove('hidden');
+};
+document.getElementById('vocab-next').onclick = ()=>{ vocabIdx = (vocabIdx+1)%vocab.length; showVocab(); };
+document.getElementById('vocab-guess').addEventListener('keydown', (e)=>{
+  if(e.key === 'Enter'){ e.preventDefault(); document.getElementById('vocab-flip').click(); }
+});
+
+function populateTopicSelects(){
+  const vSel = document.getElementById('vocab-topic');
+  const sSel = document.getElementById('scramble-topic');
+  Object.keys(vocabTopics).forEach(topic=>{
+    const o1 = document.createElement('option'); o1.value = topic; o1.textContent = topic;
+    vSel.appendChild(o1);
+    const o2 = document.createElement('option'); o2.value = topic; o2.textContent = topic;
+    sSel.appendChild(o2);
+  });
+}
+document.getElementById('vocab-topic').addEventListener('change', (e)=>{
+  currentVocabTopic = e.target.value;
+  vocab = vocabTopics[currentVocabTopic];
+  vocabIdx = weekIndex % vocab.length;
+  showVocab();
+});
+document.getElementById('scramble-topic').addEventListener('change', (e)=>{
+  currentScrambleTopic = e.target.value;
+  showScramble();
+});
+
+// ---------- IDIOM ----------
+function showIdiom(){
+  const i = idioms[idiomIdx];
+  document.getElementById('idiom-index').textContent = `Idiom ${idiomIdx+1} of ${idioms.length}`;
+  document.getElementById('idiom-text').textContent = `"${i.t}"`;
+  document.getElementById('idiom-meaning').textContent = i.m;
+  document.getElementById('idiom-meaning').classList.add('hidden');
+  document.getElementById('idiom-fr').textContent = i.fr || "";
+  document.getElementById('idiom-fr').classList.add('hidden');
+}
+document.getElementById('idiom-reveal').onclick = ()=>{
+  document.getElementById('idiom-meaning').classList.remove('hidden');
+  document.getElementById('idiom-fr').classList.remove('hidden');
+};
+document.getElementById('idiom-next').onclick = ()=>{ idiomIdx = (idiomIdx+1)%idioms.length; showIdiom(); };
+
+// ---------- GRAMMAR ----------
+function showGrammar(){
+  const g = grammarItems[grammarIdx];
+  document.getElementById('grammar-index').textContent = `Sentence ${grammarIdx+1} of ${grammarItems.length}`;
+  document.getElementById('grammar-text').textContent = g.q;
+  document.getElementById('grammar-answer').textContent = "✓ " + g.a;
+  document.getElementById('grammar-answer').classList.add('hidden');
+  document.getElementById('grammar-fr').textContent = g.fr || "";
+  document.getElementById('grammar-fr').classList.add('hidden');
+  document.getElementById('grammar-guess').value = "";
+}
+document.getElementById('grammar-reveal').onclick = ()=>{
+  document.getElementById('grammar-answer').classList.remove('hidden');
+  document.getElementById('grammar-fr').classList.remove('hidden');
+};
+document.getElementById('grammar-next').onclick = ()=>{ grammarIdx = (grammarIdx+1)%grammarItems.length; showGrammar(); };
+document.getElementById('grammar-guess').addEventListener('keydown', (e)=>{
+  if(e.key === 'Enter'){ e.preventDefault(); document.getElementById('grammar-reveal').click(); }
+});
+
+// ---------- SCRAMBLE ----------
+function scramble(word){
+  let arr = word.split('');
+  do{
+    for(let i=arr.length-1;i>0;i--){
+      const j = Math.floor(Math.random()*(i+1));
+      [arr[i],arr[j]]=[arr[j],arr[i]];
+    }
+  } while(arr.join('')===word && word.length>1);
+  return arr.join(' ');
+}
+let currentScrambleTopic = "General Everyday";
+function showScramble(){
+  const fullList = vocabTopics[currentScrambleTopic];
+  const list = fullList.filter(item=>!item.w.includes(' ')) ;
+  const source = list.length ? list : fullList;
+  const v = source[Math.floor(Math.random()*source.length)];
+  scrambleWord = v.w;
+  document.getElementById('scramble-hint').textContent = `Hint: ${v.d}`;
+  document.getElementById('scramble-letters').textContent = scramble(v.w.toUpperCase());
+  document.getElementById('scramble-answer').textContent = v.w;
+  document.getElementById('scramble-answer').classList.add('hidden');
+}
+document.getElementById('scramble-reveal').onclick = ()=>{ document.getElementById('scramble-answer').classList.remove('hidden'); };
+document.getElementById('scramble-next').onclick = showScramble;
+document.getElementById('scramble-correct').onclick = ()=>{
+  if(currentStudent){ ensureStudent(currentStudent).score++; }
+  else { guestScore++; }
+  updateScoreDisplay();
+  showScramble();
+};
+
+// ---------- TIMER ----------
+function formatTime(s){
+  const m = Math.floor(s/60).toString().padStart(2,'0');
+  const sec = (s%60).toString().padStart(2,'0');
+  return `${m}:${sec}`;
+}
+function renderTimer(){
+  const disp = document.getElementById('timer-display');
+  disp.textContent = formatTime(timerSeconds);
+  disp.classList.toggle('warn', timerSeconds<=10);
+}
+document.getElementById('timer-preset').onchange = (e)=>{
+  clearInterval(timerInterval); timerInterval=null;
+  timerSeconds = parseInt(e.target.value);
+  renderTimer();
+};
+document.getElementById('timer-start').onclick = ()=>{
+  if(timerInterval) return;
+  timerInterval = setInterval(()=>{
+    if(timerSeconds>0){ timerSeconds--; renderTimer(); }
+    else { clearInterval(timerInterval); timerInterval=null; }
+  },1000);
+};
+document.getElementById('timer-pause').onclick = ()=>{ clearInterval(timerInterval); timerInterval=null; };
+document.getElementById('timer-reset').onclick = ()=>{
+  clearInterval(timerInterval); timerInterval=null;
+  timerSeconds = parseInt(document.getElementById('timer-preset').value);
+  renderTimer();
+};
+
+// ---------- INIT ----------
+populateTopicSelects();
+refreshStudentSelect();
+document.getElementById('week-label').textContent = `📅 Content set: week of ${getWeekStartLabel()}`;
+showWarmup(); showVocab(); showIdiom(); showGrammar(); showScramble(); renderTimer(); updateScoreDisplay();
+</script>
+</body>
+</html>
