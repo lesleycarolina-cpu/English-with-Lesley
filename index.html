@@ -302,10 +302,102 @@
     .sidebar{border-right:none;border-bottom:2px solid var(--ink);}
     .main-text{font-size:1.5rem;}
     .timer-display{font-size:3.2rem;}
+  }  .login-gate{
+    position:fixed;
+    inset:0;
+    background:rgba(27,42,74,0.92);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:1000;
+    padding:20px;
+  }
+  .login-gate.hidden{display:none;}
+  .login-card{
+    background:#fff;
+    border:2px solid var(--ink);
+    box-shadow:8px 8px 0 rgba(0,0,0,0.25);
+    padding:36px 32px;
+    max-width:380px;
+    width:100%;
+    text-align:center;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+  }
+  .login-card h1{
+    font-family:'Special Elite',monospace;
+    font-size:1.4rem;
+    margin:8px 0 0 0;
+  }
+  .login-sub{
+    color:var(--ink-soft);
+    margin:0 0 10px 0;
+    font-size:0.95rem;
+  }
+  .login-card select, .login-card input{
+    width:100%;
+    padding:10px 12px;
+    border:2px solid var(--ink);
+    font-family:'Inter',sans-serif;
+    font-size:0.95rem;
+  }
+  .gate-divider{
+    color:var(--ink-soft);
+    font-size:0.78rem;
+    text-transform:uppercase;
+    letter-spacing:1px;
+  }
+  .login-card button{ width:100%; }
+  .gate-status{
+    color:var(--coral);
+    font-weight:700;
+    font-size:0.82rem;
+    min-height:1.1em;
+  }
+  .login-note{
+    font-size:0.72rem;
+    color:var(--ink-soft);
+    margin:6px 0 0 0;
+    line-height:1.4;
   }
 </style>
 </head>
 <body>
+
+<div class="login-gate" id="loginGate">
+  <div class="login-card">
+    <svg width="54" height="58" viewBox="0 -10 120 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <ellipse cx="60" cy="70" rx="46" ry="40" fill="#C0392B" stroke="#1B2A4A" stroke-width="4"/>
+      <path d="M60,32 L60,110" stroke="#1B2A4A" stroke-width="4" stroke-linecap="round"/>
+      <path d="M48,10 C40,0 30,-4 24,-6" stroke="#1B2A4A" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <path d="M72,10 C80,0 90,-4 96,-6" stroke="#1B2A4A" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <circle cx="24" cy="-6" r="4.5" fill="#1B2A4A"/>
+      <circle cx="96" cy="-6" r="4.5" fill="#1B2A4A"/>
+      <circle cx="60" cy="26" r="24" fill="#1B2A4A"/>
+      <circle cx="51" cy="22" r="6" fill="#FFFFFF"/>
+      <circle cx="69" cy="22" r="6" fill="#FFFFFF"/>
+      <circle cx="52.5" cy="23.5" r="3" fill="#1B2A4A"/>
+      <circle cx="70.5" cy="23.5" r="3" fill="#1B2A4A"/>
+      <circle cx="39" cy="55" r="8.5" fill="#1B2A4A"/>
+      <circle cx="81" cy="55" r="8.5" fill="#1B2A4A"/>
+      <circle cx="34" cy="86" r="7" fill="#1B2A4A"/>
+      <circle cx="86" cy="86" r="7" fill="#1B2A4A"/>
+      <circle cx="60" cy="98" r="7" fill="#1B2A4A"/>
+      <ellipse cx="42" cy="52" rx="6" ry="4" fill="#FFFFFF" opacity="0.35"/>
+    </svg>
+    <h1>English with Lesley</h1>
+    <p class="login-sub">Who's learning today?</p>
+    <select id="gate-select"><option value="">— Choose your name —</option></select>
+    <div class="gate-divider">or</div>
+    <input type="text" id="gate-name-input" placeholder="Type your name to start" maxlength="30">
+    <button class="action" id="gate-start">Start lesson →</button>
+    <button class="action secondary" id="gate-guest">Continue without saving progress</button>
+    <div class="gate-status" id="gate-status"></div>
+    <p class="login-note">Not a secure login — just how your progress and scores get remembered on this device.</p>
+  </div>
+</div>
 
 <div class="app">
   <div class="sidebar">
@@ -339,7 +431,6 @@
       <button class="nav-btn" data-tab="scramble">Word Scramble</button>
       <button class="nav-btn" data-tab="timer">Activity Timer</button>
     </nav>
-    <div class="stamp">Screen‑share this window during your lesson. Everything runs offline, no login needed.</div>
   </div>
 
   <main>
@@ -390,6 +481,7 @@
         <div class="seen-badge hidden" id="vocab-seen">✓ Seen before</div>
       </div>
       <div class="controls">
+        <button class="action secondary" id="vocab-prev">← Previous</button>
         <button class="action secondary" id="vocab-flip">Flip card</button>
         <button class="action" id="vocab-next">Next word →</button>
       </div>
@@ -406,6 +498,7 @@
         <div class="sub-text fr-text hidden" id="idiom-fr"></div>
       </div>
       <div class="controls">
+        <button class="action secondary" id="idiom-prev">← Previous</button>
         <button class="action secondary" id="idiom-reveal">Reveal meaning</button>
         <button class="action" id="idiom-next">Next idiom →</button>
       </div>
@@ -423,6 +516,7 @@
         <div class="sub-text fr-text hidden" id="grammar-fr"></div>
       </div>
       <div class="controls">
+        <button class="action secondary" id="grammar-prev">← Previous</button>
         <button class="action secondary" id="grammar-reveal">Reveal correction</button>
         <button class="action" id="grammar-next">Next sentence →</button>
       </div>
@@ -439,6 +533,7 @@
         <div class="sub-text hidden" id="scramble-answer"></div>
       </div>
       <div class="controls">
+        <button class="action secondary" id="scramble-prev">← Previous</button>
         <button class="action secondary" id="scramble-reveal">Reveal answer</button>
         <button class="action" id="scramble-correct">They got it! +1</button>
         <button class="action" id="scramble-next">New word →</button>
@@ -665,25 +760,41 @@ let scrambleWord = "";
 let timerSeconds = 120, timerInterval = null;
 
 // ---------- STUDENT PROFILES ----------
-// Kept in memory only (this file runs standalone, outside browser-storage-restricted
-// contexts, but we avoid relying on persistence — use Save/Load profile instead).
+// Persisted to this browser's localStorage when available (works once the file is
+// hosted at a real web address — see the "Load profile" / "Save profile" buttons
+// as a portable backup that works everywhere, including a locally-opened file).
 let students = {};          // { name: { seen: { topic: [words] }, score: number } }
 let currentStudent = "";    // "" = Guest, not tracked
+
+function loadStudentsFromStorage(){
+  try{
+    const raw = localStorage.getItem('ewl_students');
+    if(raw) Object.assign(students, JSON.parse(raw));
+  }catch(e){ /* localStorage unavailable (e.g. file:// or private mode) — fine, just no auto-persistence */ }
+}
+function saveStudentsToStorage(){
+  try{ localStorage.setItem('ewl_students', JSON.stringify(students)); }
+  catch(e){ /* ignore — export/import remains the fallback */ }
+}
+loadStudentsFromStorage();
 
 function ensureStudent(name){
   if(!students[name]) students[name] = { seen:{}, score:0 };
   return students[name];
 }
 function refreshStudentSelect(){
-  const sel = document.getElementById('student-select');
-  const prev = sel.value;
-  sel.innerHTML = '<option value="">Guest (not saved)</option>';
-  Object.keys(students).forEach(name=>{
-    const o = document.createElement('option');
-    o.value = name; o.textContent = name;
-    sel.appendChild(o);
+  [document.getElementById('student-select'), document.getElementById('gate-select')].forEach(sel=>{
+    if(!sel) return;
+    const prev = sel.value;
+    const placeholder = sel.id === 'gate-select' ? '<option value="">— Choose your name —</option>' : '<option value="">Guest (not saved)</option>';
+    sel.innerHTML = placeholder;
+    Object.keys(students).forEach(name=>{
+      const o = document.createElement('option');
+      o.value = name; o.textContent = name;
+      sel.appendChild(o);
+    });
+    sel.value = students[prev] ? prev : "";
   });
-  sel.value = students[prev] ? prev : "";
 }
 function showStatus(msg){
   const el = document.getElementById('student-status');
@@ -707,6 +818,7 @@ function addStudentFromInput(){
   input.value = "";
   showVocab();
   updateScoreDisplay();
+  saveStudentsToStorage();
   showStatus(`Added "${clean}".`);
 }
 document.getElementById('student-new').addEventListener('click', addStudentFromInput);
@@ -742,6 +854,7 @@ document.getElementById('student-import-file').addEventListener('change', (e)=>{
       document.getElementById('student-select').value = parsed.name;
       showVocab();
       updateScoreDisplay();
+      saveStudentsToStorage();
       showStatus(`Loaded "${parsed.name}".`);
     }catch(err){
       showStatus("Couldn't read that profile file.");
@@ -756,6 +869,7 @@ function markWordSeen(topic, word){
   if(!s.seen[topic]) s.seen[topic] = [];
   if(!s.seen[topic].includes(word)) s.seen[topic].push(word);
   updateProgressDisplay();
+  saveStudentsToStorage();
 }
 function isWordSeen(topic, word){
   if(!currentStudent) return false;
@@ -819,6 +933,7 @@ document.getElementById('vocab-flip').onclick = ()=>{
   document.getElementById('vocab-seen').classList.remove('hidden');
 };
 document.getElementById('vocab-next').onclick = ()=>{ vocabIdx = (vocabIdx+1)%vocab.length; showVocab(); };
+document.getElementById('vocab-prev').onclick = ()=>{ vocabIdx = (vocabIdx-1+vocab.length)%vocab.length; showVocab(); };
 document.getElementById('vocab-guess').addEventListener('keydown', (e)=>{
   if(e.key === 'Enter'){ e.preventDefault(); document.getElementById('vocab-flip').click(); }
 });
@@ -859,6 +974,7 @@ document.getElementById('idiom-reveal').onclick = ()=>{
   document.getElementById('idiom-fr').classList.remove('hidden');
 };
 document.getElementById('idiom-next').onclick = ()=>{ idiomIdx = (idiomIdx+1)%idioms.length; showIdiom(); };
+document.getElementById('idiom-prev').onclick = ()=>{ idiomIdx = (idiomIdx-1+idioms.length)%idioms.length; showIdiom(); };
 
 // ---------- GRAMMAR ----------
 function showGrammar(){
@@ -876,6 +992,7 @@ document.getElementById('grammar-reveal').onclick = ()=>{
   document.getElementById('grammar-fr').classList.remove('hidden');
 };
 document.getElementById('grammar-next').onclick = ()=>{ grammarIdx = (grammarIdx+1)%grammarItems.length; showGrammar(); };
+document.getElementById('grammar-prev').onclick = ()=>{ grammarIdx = (grammarIdx-1+grammarItems.length)%grammarItems.length; showGrammar(); };
 document.getElementById('grammar-guess').addEventListener('keydown', (e)=>{
   if(e.key === 'Enter'){ e.preventDefault(); document.getElementById('grammar-reveal').click(); }
 });
@@ -892,21 +1009,38 @@ function scramble(word){
   return arr.join(' ');
 }
 let currentScrambleTopic = "General Everyday";
-function showScramble(){
+let scrambleHistory = [];
+let scrambleHistoryIdx = -1;
+function generateScrambleItem(){
   const fullList = vocabTopics[currentScrambleTopic];
-  const list = fullList.filter(item=>!item.w.includes(' ')) ;
+  const list = fullList.filter(item=>!item.w.includes(' '));
   const source = list.length ? list : fullList;
   const v = source[Math.floor(Math.random()*source.length)];
-  scrambleWord = v.w;
-  document.getElementById('scramble-hint').textContent = `Hint: ${v.d}`;
-  document.getElementById('scramble-letters').textContent = scramble(v.w.toUpperCase());
-  document.getElementById('scramble-answer').textContent = v.w;
+  return { word: v.w, hint: v.d, letters: scramble(v.w.toUpperCase()) };
+}
+function renderScrambleEntry(entry){
+  scrambleWord = entry.word;
+  document.getElementById('scramble-hint').textContent = `Hint: ${entry.hint}`;
+  document.getElementById('scramble-letters').textContent = entry.letters;
+  document.getElementById('scramble-answer').textContent = entry.word;
   document.getElementById('scramble-answer').classList.add('hidden');
+}
+function showScramble(){
+  const entry = generateScrambleItem();
+  scrambleHistory.push(entry);
+  scrambleHistoryIdx = scrambleHistory.length - 1;
+  renderScrambleEntry(entry);
 }
 document.getElementById('scramble-reveal').onclick = ()=>{ document.getElementById('scramble-answer').classList.remove('hidden'); };
 document.getElementById('scramble-next').onclick = showScramble;
+document.getElementById('scramble-prev').onclick = ()=>{
+  if(scrambleHistoryIdx > 0){
+    scrambleHistoryIdx--;
+    renderScrambleEntry(scrambleHistory[scrambleHistoryIdx]);
+  }
+};
 document.getElementById('scramble-correct').onclick = ()=>{
-  if(currentStudent){ ensureStudent(currentStudent).score++; }
+  if(currentStudent){ ensureStudent(currentStudent).score++; saveStudentsToStorage(); }
   else { guestScore++; }
   updateScoreDisplay();
   showScramble();
@@ -941,6 +1075,40 @@ document.getElementById('timer-reset').onclick = ()=>{
   timerSeconds = parseInt(document.getElementById('timer-preset').value);
   renderTimer();
 };
+
+// ---------- LOGIN GATE ----------
+function enterApp(){
+  document.getElementById('loginGate').classList.add('hidden');
+  refreshStudentSelect();
+  document.getElementById('student-select').value = currentStudent;
+  showVocab();
+  updateScoreDisplay();
+}
+document.getElementById('gate-start').addEventListener('click', ()=>{
+  const picked = document.getElementById('gate-select').value;
+  const typed = document.getElementById('gate-name-input').value.trim();
+  const gateStatus = document.getElementById('gate-status');
+  if(picked){
+    currentStudent = picked;
+  } else if(typed){
+    ensureStudent(typed);
+    currentStudent = typed;
+    saveStudentsToStorage();
+  } else {
+    gateStatus.textContent = "Choose your name or type a new one.";
+    return;
+  }
+  gateStatus.textContent = "";
+  enterApp();
+});
+document.getElementById('gate-guest').addEventListener('click', ()=>{
+  currentStudent = "";
+  document.getElementById('gate-status').textContent = "";
+  enterApp();
+});
+document.getElementById('gate-name-input').addEventListener('keydown', (e)=>{
+  if(e.key === 'Enter'){ e.preventDefault(); document.getElementById('gate-start').click(); }
+});
 
 // ---------- INIT ----------
 populateTopicSelects();
