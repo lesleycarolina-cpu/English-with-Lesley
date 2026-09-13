@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
   :root{
     --paper:#EEF1EF;
@@ -362,6 +363,419 @@
     margin:6px 0 0 0;
     line-height:1.4;
   }
+
+/* ---- Interview Prep (scoped) ---- */
+.interview-doc {
+    --idoc-bg:#faf6f0;
+    --idoc-surface:#ffffff;
+    --idoc-surface-2:#f3ece2;
+    --idoc-ink:#241f1c;
+    --idoc-muted:#7a6f64;
+    --idoc-border:#e6dccd;
+    --idoc-accent:#c85a2e;
+    --idoc-accent-ink:#ffffff;
+    --idoc-accent-soft:#fbe6d8;
+    --idoc-teal:#1f6f5c;
+    --idoc-teal-soft:#e2f0ec;
+    --idoc-teal-ink:#0f3f34;
+    --idoc-bad:#a3372b;
+    --idoc-bad-soft:#fbe7e3;
+    --idoc-good:#1f6f5c;
+    --idoc-good-soft:#e2f0ec;
+    --idoc-shadow: 0 1px 2px rgba(36,31,28,0.06), 0 6px 20px -8px rgba(36,31,28,0.18);
+
+  background: var(--idoc-bg);
+  color: var(--idoc-ink);
+  font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.5;
+
+  @media (prefers-color-scheme: dark) {
+    &:not([data-theme="light"]) {
+      --idoc-bg:#1a1512;
+      --idoc-surface:#241d18;
+      --idoc-surface-2:#2c231d;
+      --idoc-ink:#f2e9df;
+      --idoc-muted:#a8998a;
+      --idoc-border:#3c3129;
+      --idoc-accent:#ff8a52;
+      --idoc-accent-ink:#241005;
+      --idoc-accent-soft:#3a2416;
+      --idoc-teal:#5cc4a6;
+      --idoc-teal-soft:#1c332c;
+      --idoc-teal-ink:#cdf2e5;
+      --idoc-bad:#ff8b7a;
+      --idoc-bad-soft:#3a1f1a;
+      --idoc-good:#5cc4a6;
+      --idoc-good-soft:#1c332c;
+      --idoc-shadow: 0 1px 2px rgba(0,0,0,0.3), 0 10px 28px -10px rgba(0,0,0,0.55);
+    }
+  }
+  &[data-theme="dark"] {
+    --idoc-bg:#1a1512;
+    --idoc-surface:#241d18;
+    --idoc-surface-2:#2c231d;
+    --idoc-ink:#f2e9df;
+    --idoc-muted:#a8998a;
+    --idoc-border:#3c3129;
+    --idoc-accent:#ff8a52;
+    --idoc-accent-ink:#241005;
+    --idoc-accent-soft:#3a2416;
+    --idoc-teal:#5cc4a6;
+    --idoc-teal-soft:#1c332c;
+    --idoc-teal-ink:#cdf2e5;
+    --idoc-bad:#ff8b7a;
+    --idoc-bad-soft:#3a1f1a;
+    --idoc-good:#5cc4a6;
+    --idoc-good-soft:#1c332c;
+    --idoc-shadow: 0 1px 2px rgba(0,0,0,0.3), 0 10px 28px -10px rgba(0,0,0,0.55);
+  }
+
+  & h1, & h2, & h3, & .display {
+    font-family:"Fraunces", ui-serif, Georgia, serif;
+    text-wrap:balance;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+
+  & .wrap {
+    max-width:840px;
+    margin:0 auto;
+    padding:28px 20px 80px;
+  }
+
+  & .idoc-eyebrow {
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:0.09em;
+    text-transform:uppercase;
+    color:var(--idoc-accent);
+  }
+
+  & .idoc-eyebrow .dot {width:6px;height:6px;border-radius:50%;background:var(--idoc-accent);}
+
+  & header.hero {
+    padding-top:6px;
+  }
+
+  & header.hero h1 {
+    font-size:clamp(28px,5vw,38px);
+    margin:10px 0 4px;
+  }
+
+  & .hero-sub {
+    color:var(--idoc-muted);
+    font-size:16px;
+    margin:0 0 20px;
+  }
+
+  & .briefing {
+    background:var(--idoc-surface);
+    border:1px solid var(--idoc-border);
+    border-radius:12px;
+    box-shadow:var(--idoc-shadow);
+    padding:20px 22px;
+  }
+
+  & .briefing-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:14px 20px;
+    margin-bottom:16px;
+  }
+
+  & .field-label {
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--idoc-muted);
+    margin-bottom:3px;
+  }
+
+  & .field-value {
+    font-weight:600;
+    font-size:15px;
+  }
+
+  & .field-value.mono {
+    font-family:"IBM Plex Mono", ui-monospace, monospace;
+    font-weight:500;
+    font-size:13px;
+    letter-spacing:0.01em;
+  }
+
+  & .briefing p {
+    margin:14px 0 0;
+    padding-top:14px;
+    border-top:1px solid var(--idoc-border);
+    font-size:14.5px;
+    color:var(--idoc-ink);
+  }
+
+  & .briefing p strong {color:var(--idoc-accent);}
+
+  & nav.jump {
+    position:sticky;
+    top:0;
+    z-index:5;
+    display:flex;
+    gap:6px;
+    overflow-x:auto;
+    padding:12px 0;
+    margin:28px 0 6px;
+    background:var(--idoc-bg);
+    border-bottom:1px solid var(--idoc-border);
+    scrollbar-width:none;
+  }
+
+  & nav.jump::-webkit-scrollbar {display:none;}
+
+  & nav.jump a {
+    flex:none;
+    font-size:12.5px;
+    font-weight:600;
+    color:var(--idoc-muted);
+    text-decoration:none;
+    padding:7px 12px;
+    border-radius:999px;
+    border:1px solid var(--idoc-border);
+    background:var(--idoc-surface);
+    white-space:nowrap;
+  }
+
+  & nav.jump a:hover {color:var(--idoc-accent);border-color:var(--idoc-accent);}
+
+  & section.block {
+    margin:44px 0;
+    scroll-margin-top:64px;
+  }
+
+  & .block-head {
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    margin-bottom:6px;
+  }
+
+  & .block-num {
+    font-family:"IBM Plex Mono",monospace;
+    font-size:13px;
+    color:var(--idoc-accent);
+    font-weight:500;
+  }
+
+  & .block-head h2 {
+    font-size:22px;
+    margin:0;
+  }
+
+  & .block-intro {
+    color:var(--idoc-muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+    max-width:62ch;
+  }
+
+  & .qcard {
+    background:var(--idoc-surface);
+    border:1px solid var(--idoc-border);
+    border-radius:10px;
+    padding:18px 20px;
+    margin-bottom:14px;
+    box-shadow:var(--idoc-shadow);
+  }
+
+  & .qcard .idoc-tag {
+    display:inline-block;
+    font-size:10.5px;
+    font-weight:600;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--idoc-muted);
+    background:var(--idoc-surface-2);
+    border-radius:5px;
+    padding:3px 8px;
+    margin-bottom:10px;
+  }
+
+  & .qcard .question {
+    font-family:"Fraunces", ui-serif, serif;
+    font-weight:500;
+    font-style:italic;
+    font-size:18px;
+    margin:0 0 6px;
+    text-wrap:balance;
+  }
+
+  & .qcard .why {
+    font-size:13.5px;
+    color:var(--idoc-muted);
+    margin:0 0 14px;
+  }
+
+  & details.reveal {
+    border-top:1px dashed var(--idoc-border);
+    padding-top:12px;
+  }
+
+  & details.reveal + details.reveal {
+    border-top:none;
+    padding-top:0;
+    margin-top:-2px;
+  }
+
+  & details.reveal summary {
+    cursor:pointer;
+    list-style:none;
+    display:flex;
+    align-items:center;
+    gap:7px;
+    font-size:13px;
+    font-weight:600;
+    color:var(--idoc-teal);
+    padding:4px 0;
+  }
+
+  & details.reveal summary::-webkit-details-marker {display:none;}
+
+  & details.reveal summary::before {
+    content:"▸";
+    display:inline-block;
+    transition:transform .15s ease;
+    font-size:11px;
+  }
+
+  & details.reveal[open] summary::before {transform:rotate(90deg);}
+
+  & .answer-box {
+    background:var(--idoc-teal-soft);
+    color:var(--idoc-teal-ink);
+    border-radius:8px;
+    padding:12px 14px;
+    margin:8px 0 4px;
+    font-size:14px;
+  }
+
+  & .answer-box ul {margin:4px 0 0;padding-left:18px;}
+
+  & .answer-box li {margin-bottom:5px;}
+
+  & .answer-box li:last-child {margin-bottom:0;}
+
+  & .vocab-strip {
+    display:flex;
+    flex-wrap:wrap;
+    gap:7px;
+    margin-top:8px;
+  }
+
+  & .vocab-chip {
+    font-size:12.5px;
+    background:var(--idoc-accent-soft);
+    color:var(--idoc-accent);
+    border-radius:999px;
+    padding:4px 10px;
+    font-weight:600;
+  }
+
+  & .vocab-chip span {
+    font-weight:400;
+    opacity:0.85;
+    font-style:italic;
+  }
+
+  & .callout {
+    display:flex;
+    gap:10px;
+    background:var(--idoc-accent-soft);
+    border-radius:8px;
+    padding:11px 14px;
+    margin-top:12px;
+    font-size:13.5px;
+  }
+
+  & .callout .mark {font-weight:700;color:var(--idoc-accent);flex:none;}
+
+  & .practiced-row {
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-top:14px;
+    padding-top:12px;
+    border-top:1px solid var(--idoc-border);
+  }
+
+  & .practiced-row label {
+    font-size:12.5px;
+    color:var(--idoc-muted);
+    display:flex;
+    align-items:center;
+    gap:7px;
+    cursor:pointer;
+    user-select:none;
+  }
+
+  & .practiced-row input {accent-color:var(--idoc-teal);width:15px;height:15px;}
+
+  & .mistake-row {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-bottom:10px;
+  }
+
+  @media (max-width:520px){
+  & .mistake-row {grid-template-columns:1fr;}
+
+  }
+  & .mistake-cell {
+    border-radius:8px;
+    padding:10px 13px;
+    font-size:13.5px;
+  }
+
+  & .mistake-cell.bad {background:var(--idoc-bad-soft);color:var(--idoc-bad);}
+
+  & .mistake-cell.good {background:var(--idoc-good-soft);color:var(--idoc-good);}
+
+  & .mistake-cell .lead {font-weight:700;margin-right:5px;}
+
+  & .mistake-note {
+    font-size:12px;
+    color:var(--idoc-muted);
+    margin:-4px 0 16px;
+  }
+
+  & .ask-list {
+    background:var(--idoc-surface);
+    border:1px solid var(--idoc-border);
+    border-radius:10px;
+    padding:6px 20px;
+    box-shadow:var(--idoc-shadow);
+  }
+
+  & .ask-list li {
+    padding:12px 0;
+    border-bottom:1px solid var(--idoc-border);
+    font-size:14.5px;
+  }
+
+  & .ask-list li:last-child {border-bottom:none;}
+
+  & .ask-list li strong {display:block;font-family:"Fraunces",serif;font-style:italic;font-weight:500;font-size:15.5px;margin-bottom:2px;}
+
+  & footer.note {
+    margin-top:50px;
+    padding-top:20px;
+    border-top:1px solid var(--idoc-border);
+    color:var(--idoc-muted);
+    font-size:13px;
+  }
+
+
+}
 </style>
 </head>
 <body>
@@ -430,6 +844,7 @@
       <button class="nav-btn" data-tab="grammar">Grammar Fix</button>
       <button class="nav-btn" data-tab="scramble">Word Scramble</button>
       <button class="nav-btn" data-tab="timer">Activity Timer</button>
+      <button class="nav-btn" data-tab="interview">Interview Prep</button>
     </nav>
   </div>
 
@@ -560,6 +975,368 @@
       </div>
     </div>
 
+    <!-- INTERVIEW PREP -->
+    <div class="tab-panel hidden" id="panel-interview">
+<div class="interview-doc">
+<div class="wrap">
+
+  <header class="hero">
+    <span class="idoc-eyebrow"><span class="dot"></span>English with Lesley · Interview Practice</span>
+    <h1>Mock Interview — Commercial&nbsp;Sales&nbsp;Manager</h1>
+    <p class="hero-sub">Built from Nelly's cover letter and the Palo Alto Networks job posting, for screen-sharing during the lesson.</p>
+
+    <div class="briefing">
+      <div class="briefing-grid">
+        <div>
+          <div class="field-label">Candidate</div>
+          <div class="field-value">Nelly Le Blond</div>
+        </div>
+        <div>
+          <div class="field-label">Company</div>
+          <div class="field-value">Palo Alto Networks</div>
+        </div>
+        <div>
+          <div class="field-label">Role</div>
+          <div class="field-value">Commercial Sales Manager – AURA PACA</div>
+        </div>
+        <div>
+          <div class="field-label">Location</div>
+          <div class="field-value">Remote (France) · Marseille · Lyon</div>
+        </div>
+        <div>
+          <div class="field-label">Req ID</div>
+          <div class="field-value mono">JR-019060</div>
+        </div>
+      </div>
+      <p>The interviewer is testing three things at once: can Nelly <strong>talk credibly about SaaS &amp; security</strong>, can she run a <strong>structured, consultative sales cycle</strong> through channel partners, and does her story explain <em>why</em> a regional manager is choosing to go back to an individual, quota-carrying sales seat. Every section below builds toward those three.</p>
+    </div>
+  </header>
+
+  <nav class="jump">
+    <a href="#warmup">Warm-up</a>
+    <a href="#turnaround">The turnaround story</a>
+    <a href="#rolefit">Role &amp; technical fit</a>
+    <a href="#pivot">The pivot question</a>
+    <a href="#culture">Culture fit</a>
+    <a href="#mistakes">Watch your English</a>
+    <a href="#askthem">Questions to ask</a>
+  </nav>
+
+  <!-- SECTION A -->
+  <section class="block" id="warmup">
+    <div class="block-head"><span class="block-num">01</span><h2>Warm-up</h2></div>
+    <p class="block-intro">Two minutes to set the tone. The goal isn't detail yet — it's a confident, forward-looking headline for the next 45 minutes.</p>
+
+    <div class="qcard">
+      <span class="idoc-tag">Icebreaker</span>
+      <p class="question">"So, tell me a bit about yourself and what brings you to this role."</p>
+      <p class="why">Why they ask: they want the 90-second version of the story you'll spend the rest of the interview proving.</p>
+      <details class="reveal">
+        <summary>Model-answer angle</summary>
+        <div class="answer-box">
+          <ul>
+            <li>Open with the arc: <em>Orange Business → poached to Bouygues Business as Southeast Regional Manager</em> to fix the branch with the country's toughest results.</li>
+            <li>One line on the result: profitability rose from <strong>40% to 90% in three years</strong>, with a healthy EBITDA.</li>
+            <li>Land on the "why now": she's ready to trade the manager's chair for direct client relationships and cybersecurity strategy again — the thing that energizes her most.</li>
+          </ul>
+        </div>
+      </details>
+      <details class="reveal">
+        <summary>Vocabulary</summary>
+        <div class="vocab-strip">
+          <span class="vocab-chip">poached <span>débauchée</span></span>
+          <span class="vocab-chip">turnaround <span>redressement</span></span>
+          <span class="vocab-chip">frontline <span>en première ligne</span></span>
+        </div>
+      </details>
+      <div class="practiced-row"><label><input type="checkbox">Practiced out loud</label></div>
+    </div>
+
+    <div class="qcard">
+      <span class="idoc-tag">Icebreaker</span>
+      <p class="question">"Walk me through your career so far."</p>
+      <p class="why">Why they ask: a chronology check, and a chance to see if she can narrate her own career, not just list job titles.</p>
+      <details class="reveal">
+        <summary>Model-answer angle</summary>
+        <div class="answer-box">
+          <ul>
+            <li>Keep it to 3 chapters: Orange Business → Bouygues Business turnaround → freelance instructor at KEDGE and ESGI (Zero Trust, NIS2, cybersecurity, B2B approach).</li>
+            <li>Each chapter gets one concrete result, not a job description.</li>
+          </ul>
+        </div>
+      </details>
+      <div class="practiced-row"><label><input type="checkbox">Practiced out loud</label></div>
+    </div>
+  </section>
+
+  <!-- SECTION B -->
+  <section class="block" id="turnaround">
+    <div class="block-head"><span class="block-num">02</span><h2>The turnaround story</h2></div>
+    <p class="block-intro">This is Nelly's strongest material — use the STAR shape (Situation, Task, Action, Result) so it lands as a structured business case, not a list of tasks.</p>
+
+    <div class="qcard">
+      <span class="idoc-tag">Behavioral · STAR</span>
+      <p class="question">"Tell me about a time you turned around an underperforming team or business unit."</p>
+      <p class="why">Why they ask: this role owns a territory's revenue outcome — they need proof she can fix a broken situation, not just run a healthy one.</p>
+      <details class="reveal">
+        <summary>Model-answer angle (STAR)</summary>
+        <div class="answer-box">
+          <ul>
+            <li><strong>Situation</strong> — chosen to lead the French branch with the weakest results, worst turnover, and least local visibility.</li>
+            <li><strong>Task</strong> — rebuild performance and morale without a pre-existing playbook.</li>
+            <li><strong>Action</strong> — observed and analyzed first; built structured action plans; mapped resources ("who does what, when, how"); worked with HR on both recruiting and layoffs across sales, pre-sales, experts, project management, and post-sales; rolled out cybersecurity training and workshops on cloud, AI, and qualification; traveled to other regions to benchmark best practice; ran forums so employees and clients could speak openly.</li>
+            <li><strong>Result</strong> — profitability up from 40% to 90% in three years, EBITDA held steady, employees staying and developing, client satisfaction scores improving.</li>
+          </ul>
+        </div>
+      </details>
+      <details class="reveal">
+        <summary>Vocabulary</summary>
+        <div class="vocab-strip">
+          <span class="vocab-chip">turnover <span>turnover / rotation du personnel</span></span>
+          <span class="vocab-chip">retention <span>fidélisation</span></span>
+          <span class="vocab-chip">EBITDA <span>EBE</span></span>
+          <span class="vocab-chip">benchmark best practice <span>s'inspirer des meilleures pratiques</span></span>
+        </div>
+      </details>
+      <div class="practiced-row"><label><input type="checkbox">Practiced out loud</label></div>
+    </div>
+
+    <div class="qcard">
+      <span class="idoc-tag">Behavioral</span>
+      <p class="question">"How do you build buy-in when you're leading people through change they didn't ask for?"</p>
+      <p class="why">Why they ask: sales managers who can't get quiet buy-in from partners and internal teams stall out fast.</p>
+      <details class="reveal">
+        <summary>Model-answer angle</summary>
+        <div class="answer-box">
+          <ul>
+            <li>Her own principle, stated directly in the cover letter: <em>"communication is the key to a successful transformation."</em></li>
+            <li>Concrete proof: regular workshops and open forums where employees and clients could raise concerns — not a one-way announcement.</li>
+          </ul>
+        </div>
+      </details>
+      <details class="reveal">
+        <summary>Vocabulary</summary>
+        <div class="vocab-strip">
+          <span class="vocab-chip">buy-in <span>adhésion</span></span>
+          <span class="vocab-chip">upskilling <span>montée en compétences</span></span>
+          <span class="vocab-chip">stakeholder <span>partie prenante</span></span>
+        </div>
+      </details>
+      <div class="practiced-row"><label><input type="checkbox">Practiced out loud</label></div>
+    </div>
+  </section>
+
+  <!-- SECTION C -->
+  <section class="block" id="rolefit">
+    <div class="block-head"><span class="block-num">03</span><h2>Role &amp; technical fit</h2></div>
+    <p class="block-intro">Straight from the job posting's "Your Experience" list: SaaS architectures, value/consultative selling, channel partners, and territory forecasting. Nelly's edge is that she <em>teaches</em> this material — make sure that surfaces early.</p>
+
+    <div class="qcard">
+      <span class="idoc-tag">Technical credibility</span>
+      <p class="question">"How comfortable are you discussing SaaS-based security architecture with a technical customer?"</p>
+      <p class="why">Why they ask: this is a listed qualification — "experience and knowledge of SaaS-based architectures, ideally in networking and/or security."</p>
+      <details class="reveal">
+        <summary>Model-answer angle</summary>
+        <div class="answer-box">
+          <ul>
+            <li>The strongest card in her hand: she is a freelance instructor at KEDGE (Marseille) and ESGI (Aix-en-Provence) teaching <strong>Zero Trust, NIS2, cybersecurity, and firewall configuration</strong> — this is Palo Alto's own core positioning.</li>
+            <li>Add the workshops she ran internally at Bouygues on cloud computing, cybersecurity, and AI for sales, pre-sales, and project teams — proof she can translate technical concepts for non-technical people, which <em>is</em> consultative selling.</li>
+          </ul>
+        </div>
+      </details>
+      <div class="callout"><span class="mark">Coach's note</span>&nbsp;Lead with "I teach this" before "I've sold this" — it's the more unusual, more memorable credential.</div>
+      <div class="practiced-row"><label><input type="checkbox">Practiced out loud</label></div>
+    </div>
+
+    <div class="qcard">
+      <span class="idoc-tag">Sales method</span>
+      <p class="question">"How do you approach value selling versus simply presenting features?"</p>
+      <p class="why">Why they ask: listed almost verbatim — "demonstrated experience selling complex solutions, value selling, and/or consultative sales techniques."</p>
+      <details class="reveal">
+        <summary>Model-answer angle</summary>
+        <div class="answer-box">
+          <ul>
+            <li>Reframe her turnaround work as diagnostic selling: she didn't start with a fix, she started by observing, analyzing root causes, and only then building the action plan — the exact posture the job description asks for ("identifies problems, reviews data, determines root causes, provides scalable solutions").</li>
+            <li>If she has a concrete client story (even from Orange Business), this is the moment for it.</li>
+          </ul>
+        </div>
+      </details>
+      <div class="practiced-row"><label><input type="checkbox">Practiced out loud</label></div>
+    </div>
+
+    <div class="qcard">
+      <span class="idoc-tag">Honest gap</span>
+      <p class="question">"This role sells largely through channel partners. Tell me about your experience building partner relationships."</p>
+      <p class="why">Why they ask: "cultivate relationships with our channel partners" is a named responsibility — and it's the one area where Nelly's CV doesn't give a direct example.</p>
+      <details class="reveal">
+        <summary>Model-answer angle</summary>
+        <div class="answer-box">
+          <ul>
+            <li>Don't dodge it — bridge it: as regional manager she managed a network of internal and external stakeholders (HR, sales, pre-sales, clients) toward one outcome, which is the same relationship-management muscle a channel motion needs.</li>
+            <li>Name the gap honestly, then commit: "channel-specific coverage is the part of this role I'm most looking forward to building."</li>
+          </ul>
+        </div>
+      </details>
+      <div class="callout"><span class="mark">Coach's note</span>&nbsp;This is the one question worth rehearsing until it sounds calm, not defensive.</div>
+      <div class="practiced-row"><label><input type="checkbox">Practiced out loud</label></div>
+    </div>
+
+    <div class="qcard">
+      <span class="idoc-tag">Sales operations</span>
+      <p class="question">"How would you go about building a territory plan and keeping your forecast accurate?"</p>
+      <p class="why">Why they ask: "create clear goals and complete accurate forecasting through developing a detailed territory plan" is a listed responsibility.</p>
+      <details class="reveal">
+        <summary>Model-answer angle</summary>
+        <div class="answer-box">
+          <ul>
+            <li>Reuse her own turnaround method almost word-for-word: map the resources and accounts first ("who, what, when, how"), set milestones, then review regularly — the same discipline she used to plan the branch recovery, just applied to a territory instead of a region.</li>
+          </ul>
+        </div>
+      </details>
+      <details class="reveal">
+        <summary>Vocabulary</summary>
+        <div class="vocab-strip">
+          <span class="vocab-chip">territory plan <span>plan de territoire</span></span>
+          <span class="vocab-chip">forecast <span>prévisions</span></span>
+          <span class="vocab-chip">pipeline <span>portefeuille d'opportunités</span></span>
+          <span class="vocab-chip">quota-carrying <span>avec objectif de vente</span></span>
+        </div>
+      </details>
+      <div class="practiced-row"><label><input type="checkbox">Practiced out loud</label></div>
+    </div>
+  </section>
+
+  <!-- SECTION D -->
+  <section class="block" id="pivot">
+    <div class="block-head"><span class="block-num">04</span><h2>The pivot question</h2></div>
+    <p class="block-intro">The one question every interviewer on this loop will privately be wondering about. Answer it before they have to ask twice.</p>
+
+    <div class="qcard">
+      <span class="idoc-tag">The hard one</span>
+      <p class="question">"You've been in a regional leadership role. Why move back into an individual, quota-carrying sales position?"</p>
+      <p class="why">Why they ask: on paper this can read as a step down — they need to hear it framed as a choice, not a setback.</p>
+      <details class="reveal">
+        <summary>Model-answer angle</summary>
+        <div class="answer-box">
+          <ul>
+            <li>Use her own line almost verbatim — it's already well-written: <em>"It's time for me to return to what inspires me most — building relationships based on trust and developing a shared business strategy focused on cybersecurity."</em></li>
+            <li>Add the proof point: she never actually left the field — she's still teaching Zero Trust and NIS2 to students right now, which shows this is a genuine pull toward the subject, not a story invented for the interview.</li>
+            <li>Close forward-looking: "I've proven I can fix a business from the top. Now I want to prove I can build one client relationship at a time, in the sector I already teach."</li>
+          </ul>
+        </div>
+      </details>
+      <div class="callout"><span class="mark">Coach's note</span>&nbsp;Energy matters more than logic here — this should sound like enthusiasm, not justification.</div>
+      <div class="practiced-row"><label><input type="checkbox">Practiced out loud</label></div>
+    </div>
+  </section>
+
+  <!-- SECTION E -->
+  <section class="block" id="culture">
+    <div class="block-head"><span class="block-num">05</span><h2>Culture fit</h2></div>
+    <p class="block-intro">Palo Alto Networks names five values on the posting itself: Disruption, Collaboration, Execution, Integrity, Inclusion. Expect at least one question built directly from them.</p>
+
+    <div class="qcard">
+      <span class="idoc-tag">Values</span>
+      <p class="question">"Tell me about a time you challenged the status quo."</p>
+      <p class="why">Why they ask: "Disruption" is the first value listed on their own careers page.</p>
+      <details class="reveal">
+        <summary>Model-answer angle</summary>
+        <div class="answer-box">
+          <ul>
+            <li>Taking on the branch nobody else wanted, and refusing to run it the old way — starting with analysis instead of a quick fix — <em>is</em> the disruption story.</li>
+          </ul>
+        </div>
+      </details>
+      <div class="practiced-row"><label><input type="checkbox">Practiced out loud</label></div>
+    </div>
+
+    <div class="qcard">
+      <span class="idoc-tag">Values</span>
+      <p class="question">"Cybersecurity moves fast. How do you stay current?"</p>
+      <p class="why">Why they ask: continuous learning matters more here than in most sales roles — the product line changes constantly.</p>
+      <details class="reveal">
+        <summary>Model-answer angle</summary>
+        <div class="answer-box">
+          <ul>
+            <li>The honest answer is also the strongest one: she has to stay current to keep teaching Zero Trust and NIS2 at KEDGE and ESGI — teaching is what forces the learning.</li>
+          </ul>
+        </div>
+      </details>
+      <div class="practiced-row"><label><input type="checkbox">Practiced out loud</label></div>
+    </div>
+  </section>
+
+  <!-- SECTION F -->
+  <section class="block" id="mistakes">
+    <div class="block-head"><span class="block-num">06</span><h2>Watch your English</h2></div>
+    <p class="block-intro">Common slips French speakers make when narrating exactly this kind of achievement story — flag these before the real interview, not during it.</p>
+
+    <div class="mistake-row">
+      <div class="mistake-cell bad"><span class="lead">✕</span>"I am formator for cybersecurity."</div>
+      <div class="mistake-cell good"><span class="lead">✓</span>"I am a trainer / an instructor in cybersecurity."</div>
+    </div>
+    <p class="mistake-note"><em>Formateur</em> is a false friend — "formator" isn't an English word.</p>
+
+    <div class="mistake-row">
+      <div class="mistake-cell bad"><span class="lead">✕</span>"I work here since three years."</div>
+      <div class="mistake-cell good"><span class="lead">✓</span>"I've been working here for three years."</div>
+    </div>
+    <p class="mistake-note"><strong>For</strong> + a length of time, <strong>since</strong> + a starting point ("since 2023"). This one comes up constantly when describing the three-year turnaround.</p>
+
+    <div class="mistake-row">
+      <div class="mistake-cell bad"><span class="lead">✕</span>"Actually, I manage a team of engineers."</div>
+      <div class="mistake-cell good"><span class="lead">✓</span>"Currently, I manage a team of engineers."</div>
+    </div>
+    <p class="mistake-note"><em>Actuellement</em> → <strong>currently</strong>, not "actually" (which means <em>en fait</em>).</p>
+
+    <div class="mistake-row">
+      <div class="mistake-cell bad"><span class="lead">✕</span>"Profitability increased of 40% to 90%."</div>
+      <div class="mistake-cell good"><span class="lead">✓</span>"Profitability rose from 40% to 90%."</div>
+    </div>
+    <p class="mistake-note">"Rise/increase <strong>from</strong> X <strong>to</strong> Y" — this is the single most important sentence in the whole interview, worth drilling until it's automatic.</p>
+
+    <div class="mistake-row">
+      <div class="mistake-cell bad"><span class="lead">✕</span>"I have a good experience in sales."</div>
+      <div class="mistake-cell good"><span class="lead">✓</span>"I have solid / strong experience in sales."</div>
+    </div>
+    <p class="mistake-note">"Experience" isn't usually paired with "good" in this context — reach for <strong>solid</strong>, <strong>strong</strong>, or <strong>extensive</strong>.</p>
+
+    <div class="qcard" style="margin-top:20px;">
+      <span class="idoc-tag">Pronunciation</span>
+      <p class="question" style="font-style:normal;font-size:15.5px;">Five words worth rehearsing out loud</p>
+      <div class="vocab-strip">
+        <span class="vocab-chip">cybersecurity <span>stress on "-cu-": cy-ber-se-CU-ri-ty</span></span>
+        <span class="vocab-chip">portfolio <span>port-FO-lio</span></span>
+        <span class="vocab-chip">forecast <span>FORE-cast</span></span>
+        <span class="vocab-chip">architecture <span>AR-ki-tek-cher</span></span>
+        <span class="vocab-chip">consultative <span>con-SUL-ta-tiv</span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION G -->
+  <section class="block" id="askthem">
+    <div class="block-head"><span class="block-num">07</span><h2>Questions to ask them</h2></div>
+    <p class="block-intro">Closing well matters as much as opening well. Three or four of these, not all six.</p>
+    <ul class="ask-list">
+      <li><strong>"What does the channel partner ecosystem actually look like in the AURA PACA territory?"</strong>Shows she's already thinking about the one gap in her CV.</li>
+      <li><strong>"What does success look like for someone in this seat after six months, and after a year?"</strong></li>
+      <li><strong>"Can you tell me more about the FLIGHT onboarding program — what does the first few months actually involve?"</strong>Named directly on the job posting; shows she read it closely.</li>
+      <li><strong>"Where do you see the biggest opportunity in this territory right now?"</strong></li>
+      <li><strong>"How does the sales team work day-to-day with the channel partner team?"</strong></li>
+      <li><strong>"What made the last person in this role successful — or what would you change?"</strong></li>
+    </ul>
+  </section>
+
+  <footer class="note">
+    Practice tool for a live lesson — not a script to memorize. The goal is for Nelly to speak these ideas naturally in her own words, using the vocabulary above as scaffolding rather than a text to recite.
+  </footer>
+
+</div>
+</div>
+
+    </div>
+
   </main>
 </div>
 
@@ -678,7 +1455,19 @@ const vocabTopics = {
     {w:"Prior experience", p:"noun", d:"Work done in the past relevant to a new role.", ex:"Do you have any prior experience in sales?", lvl:"Intermediate", fr:"expérience préalable — un travail antérieur pertinent."},
     {w:"Notice period", p:"noun", d:"The time an employee must work after resigning before leaving.", ex:"My notice period is one month.", lvl:"Upper-Intermediate", fr:"préavis — la période à travailler après une démission."},
     {w:"Reference", p:"noun", d:"A person who can vouch for your work or character.", ex:"Can you provide two professional references?", lvl:"Intermediate", fr:"référence — une personne qui peut témoigner en votre faveur."},
-    {w:"Job offer", p:"noun", d:"A formal proposal of employment.", ex:"She received a job offer the next day.", lvl:"Beginner", fr:"offre d'emploi — une proposition formelle d'embauche."}
+    {w:"Job offer", p:"noun", d:"A formal proposal of employment.", ex:"She received a job offer the next day.", lvl:"Beginner", fr:"offre d'emploi — une proposition formelle d'embauche."},
+    {w:"Poached", p:"adjective/verb", d:"Recruited away from another company, often by a competitor.", ex:"She was poached from a rival firm to lead the new division.", lvl:"Upper-Intermediate", fr:"débauché(e) — recruté(e) en étant convaincu(e) de quitter une autre entreprise."},
+    {w:"Turnaround", p:"noun", d:"A successful change from a bad situation to a good one.", ex:"The branch's turnaround took less than three years.", lvl:"Upper-Intermediate", fr:"redressement — le passage réussi d'une situation difficile à une bonne situation."},
+    {w:"Frontline", p:"adjective/noun", d:"Directly facing customers, or the most immediate part of an operation.", ex:"Frontline staff are the first to hear customer complaints.", lvl:"Intermediate", fr:"en première ligne — directement au contact des clients ou de l'action."},
+    {w:"Turnover", p:"noun", d:"The rate at which employees leave a company.", ex:"High turnover made it hard to keep experienced staff.", lvl:"Intermediate", fr:"turnover, rotation du personnel — le taux de départs des employés."},
+    {w:"Retention", p:"noun", d:"Keeping employees or customers instead of losing them.", ex:"The bonus scheme improved staff retention significantly.", lvl:"Upper-Intermediate", fr:"fidélisation — le fait de garder ses employés ou clients."},
+    {w:"EBITDA", p:"noun", d:"Earnings before interest, taxes, depreciation, and amortization — a measure of profitability.", ex:"EBITDA stayed stable even as revenue dipped.", lvl:"Advanced", fr:"EBE (excédent brut d'exploitation) — un indicateur de rentabilité d'une entreprise."},
+    {w:"Benchmark", p:"verb", d:"To compare a process or result against a recognized standard or competitor.", ex:"We benchmarked our results against the top three competitors.", lvl:"Upper-Intermediate", fr:"comparer, s'inspirer des meilleures pratiques — évaluer par rapport à une référence reconnue."},
+    {w:"Buy-in", p:"noun", d:"Support and agreement from the people involved, especially before a change.", ex:"Without buy-in from the team, the new process will fail.", lvl:"Upper-Intermediate", fr:"adhésion — le soutien et l'accord des personnes concernées."},
+    {w:"Upskilling", p:"noun", d:"Teaching employees new, higher-level skills.", ex:"The company invested heavily in upskilling its sales staff.", lvl:"Upper-Intermediate", fr:"montée en compétences — développer de nouvelles compétences chez les employés."},
+    {w:"Territory plan", p:"noun", d:"A structured strategy for managing sales accounts in a specific region.", ex:"Her territory plan mapped every key account by priority.", lvl:"Advanced", fr:"plan de territoire — une stratégie structurée pour gérer les comptes d'une région de vente."},
+    {w:"Pipeline", p:"noun", d:"The set of potential sales deals at various stages, tracked by a sales team.", ex:"Our pipeline looks strong going into next quarter.", lvl:"Upper-Intermediate", fr:"portefeuille d'opportunités — l'ensemble des ventes potentielles en cours."},
+    {w:"Quota-carrying", p:"adjective", d:"Describing a role directly responsible for hitting a sales target.", ex:"She moved from management back into a quota-carrying sales role.", lvl:"Advanced", fr:"avec objectif de vente — désigne un poste directement responsable d'atteindre un objectif de vente."}
   ],
   "Restaurant & Food": [
     {w:"Reservation", p:"noun", d:"An arrangement to have a table held for you in advance.", ex:"I made a reservation for two at 8 PM.", lvl:"Beginner", fr:"réservation — retenir une table à l'avance."},
