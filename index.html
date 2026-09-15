@@ -49,8 +49,8 @@
   }
   .brand{
     font-family:'Special Elite',monospace;
-    font-size:1.3rem;
-    padding:0 20px 18px 20px;
+    font-size:1.2rem;
+    padding:16px 20px 20px 20px;
     border-bottom:2px solid var(--ink);
     margin-bottom:10px;
     letter-spacing:0.5px;
@@ -58,10 +58,21 @@
     align-items:center;
     gap:10px;
   }
-  .brand span{color:var(--coral);}
+  .brand-text{
+    line-height:1.35;
+  }
+  .brand .brand-name{color:var(--coral);}
+  @keyframes ladybugFlyIn{
+    0%{ transform:translate(-150px,-70px) rotate(-30deg) scale(0.6); opacity:0; }
+    18%{ opacity:1; }
+    62%{ transform:translate(8px,6px) rotate(10deg) scale(1.06); opacity:1; }
+    82%{ transform:translate(-3px,-2px) rotate(-4deg) scale(0.98); }
+    100%{ transform:translate(0,0) rotate(0deg) scale(1); }
+  }
   .ladybug-logo{
     flex-shrink:0;
     overflow:visible;
+    animation:ladybugFlyIn 1.3s cubic-bezier(.34,1.4,.64,1) 0.2s both;
   }
   nav button{
     display:block;
@@ -835,7 +846,7 @@
         <circle cx="60" cy="98" r="7" fill="#1B2A4A"/>
         <ellipse cx="42" cy="52" rx="6" ry="4" fill="#FFFFFF" opacity="0.35"/>
       </svg>
-      English with <span>Lesley</span>
+      <span class="brand-text">English with <span class="brand-name">Lesley</span></span>
     </div>
     <nav>
       <button class="nav-btn active" data-tab="warmup">Warm‑Up Talk</button>
@@ -1357,7 +1368,22 @@ const warmups = [
   "What's something you believed as a child that turned out to be wrong?",
   "Tell me about a book, film, or show that changed how you think.",
   "What's your favorite way to spend a rainy day?",
-  "If you could instantly speak one new language fluently, which would you choose and why?"
+  "If you could instantly speak one new language fluently, which would you choose and why?",
+  "What's the most useful thing you've learned from a mistake?",
+  "If you could master any musical instrument overnight, which would you choose?",
+  "Describe a meal that reminds you of home.",
+  "What's a tradition from your family that you want to keep alive?",
+  "If you had an extra hour every day, how would you spend it?",
+  "What's the last thing that made you laugh out loud?",
+  "Tell me about a place you'd love to visit but never have.",
+  "What's a piece of technology you couldn't live without?",
+  "Describe your perfect weekend getaway.",
+  "What's something you've changed your mind about recently?",
+  "If you wrote a book, what would it be about?",
+  "What's the best gift you've ever given someone?",
+  "Tell me about a person who has influenced you a lot.",
+  "What's a goal you're currently working toward?",
+  "If you could relive one day of your life, which would it be?"
 ];
 
 const vocabTopics = {
@@ -1371,7 +1397,12 @@ const vocabTopics = {
     {w:"Ambiguous", p:"adjective", d:"Open to more than one interpretation; unclear.", ex:"The instructions were ambiguous, so everyone did something different.", lvl:"Advanced", fr:"ambigu — qui peut être compris de plusieurs façons."},
     {w:"Thrifty", p:"adjective", d:"Careful with money; not wasteful.", ex:"My grandmother was famously thrifty.", lvl:"Intermediate", fr:"économe — qui fait attention à l'argent."},
     {w:"Reluctant", p:"adjective", d:"Unwilling to do something.", ex:"He was reluctant to speak in front of the group.", lvl:"Intermediate", fr:"réticent — peu disposé à faire quelque chose."},
-    {w:"Versatile", p:"adjective", d:"Able to adapt to many different functions or situations.", ex:"Olive oil is a versatile ingredient.", lvl:"Upper-Intermediate", fr:"polyvalent — qui s'adapte à plusieurs usages."}
+    {w:"Versatile", p:"adjective", d:"Able to adapt to many different functions or situations.", ex:"Olive oil is a versatile ingredient.", lvl:"Upper-Intermediate", fr:"polyvalent — qui s'adapte à plusieurs usages."},
+    {w:"Diligent", p:"adjective", d:"Careful and hardworking.", ex:"She is a diligent student who never misses a deadline.", lvl:"Upper-Intermediate", fr:"assidu, appliqué — travailleur et soigneux."},
+    {w:"Skeptical", p:"adjective", d:"Having doubts about whether something is true.", ex:"He was skeptical about the new plan at first.", lvl:"Intermediate", fr:"sceptique — qui a des doutes."},
+    {w:"Tedious", p:"adjective", d:"Long, slow, and boring.", ex:"Filling out these forms is tedious work.", lvl:"Upper-Intermediate", fr:"fastidieux — long et ennuyeux."},
+    {w:"Spontaneous", p:"adjective", d:"Done without planning in advance.", ex:"We made a spontaneous decision to go camping.", lvl:"Intermediate", fr:"spontané — fait sans planification."},
+    {w:"Humble", p:"adjective", d:"Not proud; modest about one's own abilities.", ex:"Despite her success, she stayed humble.", lvl:"Intermediate", fr:"humble — modeste, pas prétentieux."}
   ],
   "Business English": [
     {w:"Leverage", p:"verb", d:"To use something to maximum advantage.", ex:"We need to leverage our existing customer base.", lvl:"Upper-Intermediate", fr:"tirer parti de, exploiter — utiliser au maximum de son avantage."},
@@ -1383,7 +1414,12 @@ const vocabTopics = {
     {w:"Revenue", p:"noun", d:"Income generated from business activities.", ex:"Revenue grew by 12% this quarter.", lvl:"Intermediate", fr:"chiffre d'affaires, revenu — l'argent généré par une entreprise."},
     {w:"Delegate", p:"verb", d:"To give a task or responsibility to someone else.", ex:"A good manager knows how to delegate.", lvl:"Intermediate", fr:"déléguer — confier une tâche à quelqu'un d'autre."},
     {w:"Forecast", p:"verb/noun", d:"To predict future trends, especially financial ones.", ex:"Our sales forecast looks strong for next year.", lvl:"Intermediate", fr:"prévision, prévoir — anticiper des tendances futures."},
-    {w:"Synergy", p:"noun", d:"Combined effect greater than the sum of individual parts.", ex:"The merger created real synergy between the two teams.", lvl:"Advanced", fr:"synergie — effet combiné supérieur à la somme des parties."}
+    {w:"Synergy", p:"noun", d:"Combined effect greater than the sum of individual parts.", ex:"The merger created real synergy between the two teams.", lvl:"Advanced", fr:"synergie — effet combiné supérieur à la somme des parties."},
+    {w:"Outsource", p:"verb", d:"To hire an outside company to do work.", ex:"We outsource our customer support to a specialized firm.", lvl:"Upper-Intermediate", fr:"externaliser — confier un travail à une entreprise extérieure."},
+    {w:"Merger", p:"noun", d:"The joining of two companies into one.", ex:"The merger created the largest firm in the industry.", lvl:"Upper-Intermediate", fr:"fusion — le regroupement de deux entreprises en une seule."},
+    {w:"Overhead", p:"noun", d:"The ongoing costs of running a business.", ex:"Renting a smaller office cut our overhead significantly.", lvl:"Advanced", fr:"frais généraux — les coûts continus de fonctionnement d'une entreprise."},
+    {w:"Scalable", p:"adjective", d:"Able to grow easily without major extra cost.", ex:"They built a scalable model before expanding abroad.", lvl:"Advanced", fr:"évolutif — capable de croître facilement."},
+    {w:"Deadline", p:"noun", d:"The latest time by which something must be finished.", ex:"We have to hit the deadline on Friday.", lvl:"Beginner", fr:"date limite, échéance — le moment où quelque chose doit être terminé."}
   ],
   "Travel": [
     {w:"Itinerary", p:"noun", d:"A planned route or schedule for a trip.", ex:"Can you send me the full itinerary before we leave?", lvl:"Intermediate", fr:"itinéraire — le programme prévu d'un voyage."},
@@ -1395,7 +1431,12 @@ const vocabTopics = {
     {w:"Customs", p:"noun", d:"The airport area where officials check goods entering a country.", ex:"We waited twenty minutes at customs.", lvl:"Intermediate", fr:"la douane — le contrôle des marchandises à l'entrée d'un pays."},
     {w:"Excursion", p:"noun", d:"A short trip taken for pleasure, often organized.", ex:"The hotel offers a boat excursion every Saturday.", lvl:"Upper-Intermediate", fr:"excursion — une sortie courte, souvent organisée."},
     {w:"Backpacking", p:"noun", d:"Traveling cheaply carrying your belongings in a backpack.", ex:"She went backpacking through South America after university.", lvl:"Intermediate", fr:"voyager sac au dos — voyager à petit budget avec un sac à dos."},
-    {w:"Currency exchange", p:"noun", d:"Converting one country's money into another's.", ex:"There's a currency exchange booth near the exit.", lvl:"Intermediate", fr:"bureau de change — convertir une monnaie en une autre."}
+    {w:"Currency exchange", p:"noun", d:"Converting one country's money into another's.", ex:"There's a currency exchange booth near the exit.", lvl:"Intermediate", fr:"bureau de change — convertir une monnaie en une autre."},
+    {w:"Passport control", p:"noun", d:"The border checkpoint where travel documents are checked.", ex:"The line at passport control took almost an hour.", lvl:"Intermediate", fr:"contrôle des passeports."},
+    {w:"Connecting flight", p:"noun", d:"A second flight taken to reach a final destination.", ex:"We nearly missed our connecting flight in Frankfurt.", lvl:"Intermediate", fr:"vol de correspondance."},
+    {w:"All-inclusive", p:"adjective", d:"Describing a holiday package that includes meals and drinks.", ex:"We booked an all-inclusive resort for the honeymoon.", lvl:"Intermediate", fr:"tout compris."},
+    {w:"Boarding pass", p:"noun", d:"The document needed to get on a plane.", ex:"Don't forget to print your boarding pass.", lvl:"Beginner", fr:"carte d'embarquement."},
+    {w:"Sightseeing", p:"noun", d:"Visiting famous or interesting places as a tourist.", ex:"We spent the whole afternoon sightseeing in the old town.", lvl:"Beginner", fr:"faire du tourisme, visiter les lieux touristiques."}
   ],
   "Technology": [
     {w:"Glitch", p:"noun", d:"A small, temporary malfunction in a system.", ex:"There's a glitch in the app that crashes on login.", lvl:"Intermediate", fr:"bug, dysfonctionnement — un petit problème technique passager."},
@@ -1407,7 +1448,12 @@ const vocabTopics = {
     {w:"Outdated", p:"adjective", d:"No longer current or up to date.", ex:"Our software is outdated and needs an upgrade.", lvl:"Intermediate", fr:"obsolète, dépassé — qui n'est plus à jour."},
     {w:"Troubleshoot", p:"verb", d:"To identify and fix a problem in a system.", ex:"IT helped me troubleshoot the connection issue.", lvl:"Upper-Intermediate", fr:"dépanner — identifier et résoudre un problème technique."},
     {w:"Cloud storage", p:"noun", d:"Saving data on remote servers accessed via the internet.", ex:"We moved everything to cloud storage last year.", lvl:"Intermediate", fr:"stockage en nuage (cloud) — sauvegarder des données à distance."},
-    {w:"Malware", p:"noun", d:"Software designed to damage or disrupt a computer.", ex:"The email contained a link to malware.", lvl:"Intermediate", fr:"logiciel malveillant — un programme conçu pour nuire à un ordinateur."}
+    {w:"Malware", p:"noun", d:"Software designed to damage or disrupt a computer.", ex:"The email contained a link to malware.", lvl:"Intermediate", fr:"logiciel malveillant — un programme conçu pour nuire à un ordinateur."},
+    {w:"Encryption", p:"noun", d:"Converting data into a code to prevent unauthorized access.", ex:"All messages are protected with end-to-end encryption.", lvl:"Advanced", fr:"chiffrement — convertir des données en code pour empêcher un accès non autorisé."},
+    {w:"Interface", p:"noun", d:"The way a user interacts with a device or program.", ex:"The new interface is much cleaner than the old one.", lvl:"Intermediate", fr:"interface — la manière dont un utilisateur interagit avec un appareil."},
+    {w:"Update", p:"noun/verb", d:"To install the newest version of software.", ex:"Please update the app before the meeting.", lvl:"Beginner", fr:"mettre à jour, mise à jour."},
+    {w:"Compatible", p:"adjective", d:"Able to work together with another system.", ex:"Make sure the charger is compatible with your phone.", lvl:"Intermediate", fr:"compatible — capable de fonctionner avec un autre système."},
+    {w:"Subscription", p:"noun", d:"A regular payment for ongoing access to a service.", ex:"I canceled my streaming subscription last month.", lvl:"Intermediate", fr:"abonnement — un paiement régulier pour un accès continu à un service."}
   ],
   "Health & Wellness": [
     {w:"Fatigue", p:"noun", d:"Extreme tiredness.", ex:"He's been suffering from fatigue after long shifts.", lvl:"Intermediate", fr:"fatigue — une grande lassitude physique."},
@@ -1419,7 +1465,12 @@ const vocabTopics = {
     {w:"Sedentary", p:"adjective", d:"Involving a lot of sitting; not physically active.", ex:"Many office jobs are quite sedentary.", lvl:"Advanced", fr:"sédentaire — qui implique de rester assis, peu actif."},
     {w:"Prescription", p:"noun", d:"A doctor's written instruction for medicine.", ex:"I need to pick up my prescription from the pharmacy.", lvl:"Intermediate", fr:"ordonnance — les instructions écrites d'un médecin."},
     {w:"Stress relief", p:"noun", d:"Activities or methods used to reduce stress.", ex:"Yoga is her favorite form of stress relief.", lvl:"Intermediate", fr:"soulagement du stress — des activités pour réduire le stress."},
-    {w:"Immune system", p:"noun", d:"The body's defense against illness and infection.", ex:"Vitamin C is said to support the immune system.", lvl:"Intermediate", fr:"système immunitaire — la défense du corps contre les maladies."}
+    {w:"Immune system", p:"noun", d:"The body's defense against illness and infection.", ex:"Vitamin C is said to support the immune system.", lvl:"Intermediate", fr:"système immunitaire — la défense du corps contre les maladies."},
+    {w:"Insomnia", p:"noun", d:"Difficulty falling or staying asleep.", ex:"Stress at work has been giving her insomnia.", lvl:"Upper-Intermediate", fr:"insomnie — difficulté à dormir."},
+    {w:"Balanced diet", p:"noun", d:"Eating a healthy variety of different foods.", ex:"A balanced diet includes plenty of vegetables.", lvl:"Intermediate", fr:"alimentation équilibrée."},
+    {w:"Physical therapy", p:"noun", d:"Treatment to help someone recover movement after an injury.", ex:"He started physical therapy after knee surgery.", lvl:"Intermediate", fr:"kinésithérapie."},
+    {w:"Burnout", p:"noun", d:"Extreme exhaustion caused by prolonged stress.", ex:"She took a month off to recover from burnout.", lvl:"Upper-Intermediate", fr:"épuisement professionnel, burn-out."},
+    {w:"Vital signs", p:"noun", d:"Basic measurements of body function, like pulse and temperature.", ex:"The nurse checked his vital signs every hour.", lvl:"Intermediate", fr:"signes vitaux."}
   ],
   "Social & Emotions": [
     {w:"Awkward", p:"adjective", d:"Causing embarrassment or discomfort in a social situation.", ex:"There was an awkward silence after the joke.", lvl:"Intermediate", fr:"gênant, maladroit — qui met mal à l'aise."},
@@ -1431,7 +1482,12 @@ const vocabTopics = {
     {w:"Vent", p:"verb", d:"To express strong feelings, especially frustration, freely.", ex:"She just needed to vent about her day.", lvl:"Intermediate", fr:"se défouler, exprimer ses frustrations."},
     {w:"Sympathize", p:"verb", d:"To feel or express understanding for someone's difficulty.", ex:"I really sympathize with what you're going through.", lvl:"Upper-Intermediate", fr:"compatir — partager la difficulté de quelqu'un."},
     {w:"Small talk", p:"noun", d:"Light, polite conversation about unimportant topics.", ex:"We made small talk while waiting for the bus.", lvl:"Beginner", fr:"bavardage léger, banalités — une conversation polie sans importance."},
-    {w:"Bond", p:"verb/noun", d:"To form a close connection with someone.", ex:"The trip really helped the team bond.", lvl:"Intermediate", fr:"créer un lien — établir une relation proche."}
+    {w:"Bond", p:"verb/noun", d:"To form a close connection with someone.", ex:"The trip really helped the team bond.", lvl:"Intermediate", fr:"créer un lien — établir une relation proche."},
+    {w:"Relieved", p:"adjective", d:"Feeling less worried after a stressful situation ends.", ex:"I was so relieved when the test results came back normal.", lvl:"Intermediate", fr:"soulagé — se sentir moins inquiet après la fin d'un stress."},
+    {w:"Frustrated", p:"adjective", d:"Annoyed because something isn't going well.", ex:"He felt frustrated after the third delay.", lvl:"Intermediate", fr:"frustré — contrarié parce que quelque chose ne va pas bien."},
+    {w:"Comfort zone", p:"noun", d:"A situation where someone feels safe and at ease.", ex:"Public speaking pushed her outside her comfort zone.", lvl:"Upper-Intermediate", fr:"zone de confort."},
+    {w:"Heart-to-heart", p:"noun", d:"An honest, personal conversation.", ex:"We had a heart-to-heart about our future plans.", lvl:"Upper-Intermediate", fr:"conversation à cœur ouvert."},
+    {w:"Get along with", p:"phrase", d:"To have a good relationship with someone.", ex:"She gets along with everyone in the office.", lvl:"Beginner", fr:"bien s'entendre avec quelqu'un."}
   ],
   "Academic English": [
     {w:"Analyze", p:"verb", d:"To examine something in detail to understand it.", ex:"The essay analyzes the causes of the war.", lvl:"Intermediate", fr:"analyser — examiner en détail pour comprendre."},
@@ -1443,7 +1499,12 @@ const vocabTopics = {
     {w:"Peer review", p:"noun", d:"Evaluation of work by others in the same field.", ex:"The paper went through peer review before publication.", lvl:"Advanced", fr:"évaluation par les pairs — un travail jugé par des collègues du même domaine."},
     {w:"Thesis", p:"noun", d:"A statement or theory put forward to be supported.", ex:"His thesis argues that language shapes thought.", lvl:"Upper-Intermediate", fr:"thèse — une affirmation ou théorie à défendre."},
     {w:"Elaborate", p:"verb", d:"To explain something in more detail.", ex:"Could you elaborate on your last point?", lvl:"Intermediate", fr:"développer, préciser — expliquer plus en détail."},
-    {w:"Rigorous", p:"adjective", d:"Extremely thorough and careful.", ex:"The research followed a rigorous methodology.", lvl:"Advanced", fr:"rigoureux — extrêmement précis et méthodique."}
+    {w:"Rigorous", p:"adjective", d:"Extremely thorough and careful.", ex:"The research followed a rigorous methodology.", lvl:"Advanced", fr:"rigoureux — extrêmement précis et méthodique."},
+    {w:"Abstract", p:"noun", d:"A short summary at the start of a research paper.", ex:"Read the abstract before deciding if the paper is relevant.", lvl:"Advanced", fr:"résumé — un court résumé d'un article de recherche."},
+    {w:"Feedback", p:"noun", d:"Comments given on someone's work to help them improve.", ex:"The professor gave detailed feedback on my draft.", lvl:"Intermediate", fr:"retour, commentaires — des remarques données sur un travail pour l'améliorer."},
+    {w:"Draft", p:"noun", d:"An early, unfinished version of a piece of writing.", ex:"This is only the first draft of my essay.", lvl:"Intermediate", fr:"brouillon — une version préliminaire et inachevée d'un texte."},
+    {w:"Data set", p:"noun", d:"A collection of related information used for analysis.", ex:"The study is based on a large data set.", lvl:"Upper-Intermediate", fr:"ensemble de données."},
+    {w:"Assumption", p:"noun", d:"Something believed to be true without proof.", ex:"The theory rests on a questionable assumption.", lvl:"Upper-Intermediate", fr:"hypothèse, présupposé — quelque chose considéré vrai sans preuve."}
   ],
   "Job Interviews": [
     {w:"Qualifications", p:"noun", d:"Skills or achievements that make someone suitable for a job.", ex:"Her qualifications make her a strong candidate.", lvl:"Intermediate", fr:"qualifications — les compétences qui rendent quelqu'un apte à un poste."},
@@ -1467,7 +1528,10 @@ const vocabTopics = {
     {w:"Upskilling", p:"noun", d:"Teaching employees new, higher-level skills.", ex:"The company invested heavily in upskilling its sales staff.", lvl:"Upper-Intermediate", fr:"montée en compétences — développer de nouvelles compétences chez les employés."},
     {w:"Territory plan", p:"noun", d:"A structured strategy for managing sales accounts in a specific region.", ex:"Her territory plan mapped every key account by priority.", lvl:"Advanced", fr:"plan de territoire — une stratégie structurée pour gérer les comptes d'une région de vente."},
     {w:"Pipeline", p:"noun", d:"The set of potential sales deals at various stages, tracked by a sales team.", ex:"Our pipeline looks strong going into next quarter.", lvl:"Upper-Intermediate", fr:"portefeuille d'opportunités — l'ensemble des ventes potentielles en cours."},
-    {w:"Quota-carrying", p:"adjective", d:"Describing a role directly responsible for hitting a sales target.", ex:"She moved from management back into a quota-carrying sales role.", lvl:"Advanced", fr:"avec objectif de vente — désigne un poste directement responsable d'atteindre un objectif de vente."}
+    {w:"Quota-carrying", p:"adjective", d:"Describing a role directly responsible for hitting a sales target.", ex:"She moved from management back into a quota-carrying sales role.", lvl:"Advanced", fr:"avec objectif de vente — désigne un poste directement responsable d'atteindre un objectif de vente."},
+    {w:"Elevator pitch", p:"noun", d:"A very short summary of who you are professionally.", ex:"She has a polished 30-second elevator pitch ready.", lvl:"Upper-Intermediate", fr:"pitch d'ascenseur — un très court résumé professionnel de soi."},
+    {w:"Onboarding", p:"noun", d:"The process of integrating a new employee into a company.", ex:"Onboarding usually takes about two weeks here.", lvl:"Intermediate", fr:"intégration — le processus d'accueil d'un nouvel employé."},
+    {w:"Counteroffer", p:"noun", d:"A new offer made in response to a rejected one, often about salary.", ex:"His current employer made a counteroffer to keep him.", lvl:"Advanced", fr:"contre-offre."}
   ],
   "Restaurant & Food": [
     {w:"Reservation", p:"noun", d:"An arrangement to have a table held for you in advance.", ex:"I made a reservation for two at 8 PM.", lvl:"Beginner", fr:"réservation — retenir une table à l'avance."},
@@ -1479,7 +1543,12 @@ const vocabTopics = {
     {w:"Split the bill", p:"phrase", d:"To divide the cost of a meal among diners.", ex:"Let's just split the bill evenly.", lvl:"Intermediate", fr:"partager l'addition — diviser le coût du repas."},
     {w:"Signature dish", p:"noun", d:"A dish a restaurant or chef is especially known for.", ex:"The lamb curry is the chef's signature dish.", lvl:"Upper-Intermediate", fr:"plat signature — le plat pour lequel un restaurant est connu."},
     {w:"Take-out", p:"noun", d:"Food bought at a restaurant to eat elsewhere.", ex:"We ordered take-out instead of cooking tonight.", lvl:"Beginner", fr:"à emporter — de la nourriture achetée pour manger ailleurs."},
-    {w:"Allergic", p:"adjective", d:"Having a bad reaction to a certain food or substance.", ex:"I'm allergic to shellfish, so I'll skip that dish.", lvl:"Intermediate", fr:"allergique — qui a une mauvaise réaction à un aliment."}
+    {w:"Allergic", p:"adjective", d:"Having a bad reaction to a certain food or substance.", ex:"I'm allergic to shellfish, so I'll skip that dish.", lvl:"Intermediate", fr:"allergique — qui a une mauvaise réaction à un aliment."},
+    {w:"Garnish", p:"noun/verb", d:"A decoration added to a dish.", ex:"The plate was garnished with a sprig of mint.", lvl:"Upper-Intermediate", fr:"garniture — une décoration ajoutée à un plat."},
+    {w:"Well-done", p:"adjective", d:"Describing meat cooked thoroughly.", ex:"He always orders his steak well-done.", lvl:"Beginner", fr:"bien cuit."},
+    {w:"Rare", p:"adjective", d:"Describing meat cooked very little.", ex:"I like my steak rare, with a red center.", lvl:"Beginner", fr:"saignant."},
+    {w:"To-go box", p:"noun", d:"A container used to take leftover restaurant food home.", ex:"Can I get a to-go box for the rest of this?", lvl:"Beginner", fr:"boîte à emporter."},
+    {w:"Gratuity", p:"noun", d:"A tip given to service staff.", ex:"An 18% gratuity is included for large groups.", lvl:"Upper-Intermediate", fr:"pourboire."}
   ],
   "Dating & Relationships": [
     {w:"Hit it off", p:"phrase", d:"To immediately like and get along with someone.", ex:"We hit it off right from the first date.", lvl:"Upper-Intermediate", fr:"bien s'entendre dès le début — sympathiser immédiatement."},
@@ -1491,11 +1560,15 @@ const vocabTopics = {
     {w:"Butterflies", p:"noun", d:"A nervous, excited feeling, often from attraction.", ex:"I still get butterflies when I see him.", lvl:"Intermediate", fr:"papillons dans le ventre — une sensation nerveuse et excitée."},
     {w:"Commitment-phobic", p:"adjective", d:"Afraid of committing to a serious relationship.", ex:"He admits he's a bit commitment-phobic.", lvl:"Advanced", fr:"qui a peur de l'engagement."},
     {w:"Soulmate", p:"noun", d:"A person ideally suited to another as a close companion.", ex:"She believes everyone has a soulmate.", lvl:"Intermediate", fr:"âme sœur — la personne idéale pour vous."},
-    {w:"Red flag", p:"noun", d:"A warning sign that something may be wrong.", ex:"Ignoring your messages for days is a red flag.", lvl:"Upper-Intermediate", fr:"signal d'alarme — un signe qu'il y a un problème."}
+    {w:"Red flag", p:"noun", d:"A warning sign that something may be wrong.", ex:"Ignoring your messages for days is a red flag.", lvl:"Upper-Intermediate", fr:"signal d'alarme — un signe qu'il y a un problème."},
+    {w:"Chemistry", p:"noun", d:"A strong natural connection between two people.", ex:"They had instant chemistry from their first conversation.", lvl:"Upper-Intermediate", fr:"alchimie — une forte connexion naturelle entre deux personnes."},
+    {w:"Ghosting", p:"noun", d:"Suddenly cutting off all communication with someone.", ex:"After two great dates, he started ghosting her.", lvl:"Upper-Intermediate", fr:"ghosting — cesser brusquement toute communication avec quelqu'un."},
+    {w:"Exclusive", p:"adjective", d:"Dating only one person, by mutual agreement.", ex:"They decided to become exclusive after a few months.", lvl:"Upper-Intermediate", fr:"exclusif — sortir avec une seule personne."},
+    {w:"Common ground", p:"noun", d:"Shared interests or values between people.", ex:"They found common ground over their love of hiking.", lvl:"Upper-Intermediate", fr:"terrain d'entente — des intérêts ou valeurs partagés."},
+    {w:"Text back", p:"phrase", d:"To reply to a text message.", ex:"He never texts back on time.", lvl:"Beginner", fr:"répondre à un texto."}
   ]
 };
 let currentVocabTopic = "General Everyday";
-let vocab = vocabTopics[currentVocabTopic];
 
 const idioms = [
   {t:"Break the ice", m:"To do or say something to make people feel more comfortable, especially at the start of a meeting.", fr:"briser la glace — détendre l'atmosphère au début d'une rencontre."},
@@ -1507,7 +1580,37 @@ const idioms = [
   {t:"Get the ball rolling", m:"To start something happening.", fr:"lancer les choses — faire démarrer quelque chose."},
   {t:"On the same page", m:"To agree with someone or understand a situation the same way.", fr:"être sur la même longueur d'onde — être d'accord."},
   {t:"Cut corners", m:"To do something in the easiest or cheapest way, often lowering quality.", fr:"rogner sur la qualité, bâcler — faire au plus simple, au détriment de la qualité."},
-  {t:"Speak of the devil", m:"Said when a person you were just talking about suddenly appears.", fr:"quand on parle du loup — dit quand une personne dont on parlait apparaît."}
+  {t:"Speak of the devil", m:"Said when a person you were just talking about suddenly appears.", fr:"quand on parle du loup — dit quand une personne dont on parlait apparaît."},
+  {t:"Piece of cake", m:"Something very easy to do.", fr:"du gâteau, les doigts dans le nez — quelque chose de très facile."},
+  {t:"Let the cat out of the bag", m:"To reveal a secret, usually by accident.", fr:"vendre la mèche — révéler un secret par accident."},
+  {t:"Hit the sack", m:"To go to bed.", fr:"aller se coucher, aller au dodo."},
+  {t:"Burn the midnight oil", m:"To work late into the night.", fr:"travailler tard dans la nuit, veiller."},
+  {t:"A slice of the pie", m:"A share of something valuable, like profits.", fr:"une part du gâteau — une part de quelque chose de précieux."},
+  {t:"Throw in the towel", m:"To give up on something.", fr:"jeter l'éponge — abandonner."},
+  {t:"Beat around the bush", m:"To avoid saying something directly.", fr:"tourner autour du pot — éviter de dire quelque chose directement."},
+  {t:"Back to the drawing board", m:"To start again after a plan or attempt has failed.", fr:"retourner à la case départ — recommencer après un échec."},
+  {t:"In the same boat", m:"In the same difficult situation as someone else.", fr:"être logé à la même enseigne — être dans la même situation difficile."},
+  {t:"Jump on the bandwagon", m:"To join a popular trend or activity.", fr:"suivre la tendance — monter dans le train en marche."},
+  {t:"Keep an eye on", m:"To watch or monitor something closely.", fr:"garder un œil sur — surveiller de près."},
+  {t:"Call it a day", m:"To stop working on something for the rest of the day.", fr:"s'arrêter là pour aujourd'hui, lever le camp."},
+  {t:"Get cold feet", m:"To become nervous and hesitant right before doing something important.", fr:"avoir le trac, se dégonfler au dernier moment."},
+  {t:"The best of both worlds", m:"The benefits of two different things at the same time.", fr:"le meilleur des deux mondes — les avantages de deux choses différentes en même temps."},
+  {t:"Break a leg", m:"Good luck — especially said before a performance.", fr:"merde (pour souhaiter bonne chance) — bonne chance, surtout avant une représentation."},
+  {t:"Spill the beans", m:"To reveal secret information.", fr:"vendre la mèche, cracher le morceau — révéler une information secrète."},
+  {t:"Under the radar", m:"Without being noticed.", fr:"discrètement — sans se faire remarquer."},
+  {t:"A blessing in disguise", m:"Something that seems bad at first but turns out to be good.", fr:"un mal pour un bien — quelque chose qui semble mauvais mais se révèle bénéfique."},
+  {t:"Actions speak louder than words", m:"What you do matters more than what you say.", fr:"les actes valent mieux que les paroles."},
+  {t:"Don't judge a book by its cover", m:"Don't judge something based on appearance alone.", fr:"il ne faut pas se fier aux apparences."},
+  {t:"Kill two birds with one stone", m:"To achieve two things with a single action.", fr:"faire d'une pierre deux coups."},
+  {t:"The ball is in your court", m:"It's your turn to take action or make a decision.", fr:"la balle est dans ton camp."},
+  {t:"Go the extra mile", m:"To make more effort than is expected.", fr:"se donner du mal, aller au-delà de ce qui est demandé."},
+  {t:"Hang in there", m:"Stay strong, don't give up.", fr:"tiens bon, accroche-toi."},
+  {t:"Miss the boat", m:"To miss an opportunity.", fr:"rater le coche, manquer une occasion."},
+  {t:"On thin ice", m:"In a risky or precarious situation.", fr:"sur la corde raide, en terrain glissant."},
+  {t:"Put all your eggs in one basket", m:"To risk everything on a single plan.", fr:"mettre tous ses œufs dans le même panier."},
+  {t:"See eye to eye", m:"To agree with someone.", fr:"voir les choses du même œil, être d'accord."},
+  {t:"Take it with a grain of salt", m:"To not fully believe something.", fr:"prendre avec des pincettes."},
+  {t:"Bark up the wrong tree", m:"To pursue a mistaken course of action or blame the wrong person.", fr:"se tromper de cible, faire fausse route."}
 ];
 
 const grammarItems = [
@@ -1520,13 +1623,30 @@ const grammarItems = [
   {q:"Can you explain me the problem?", a:"Can you explain the problem to me?", fr:"Peux-tu m'expliquer le problème ?"},
   {q:"I've been working here since three years.", a:"I've been working here for three years.", fr:"Je travaille ici depuis trois ans."},
   {q:"He said me he was tired.", a:"He told me he was tired.", fr:"Il m'a dit qu'il était fatigué."},
-  {q:"Yesterday, I have finished the report.", a:"Yesterday, I finished the report.", fr:"Hier, j'ai terminé le rapport."}
+  {q:"Yesterday, I have finished the report.", a:"Yesterday, I finished the report.", fr:"Hier, j'ai terminé le rapport."},
+  {q:"She have three cats.", a:"She has three cats.", fr:"Elle a trois chats."},
+  {q:"I am agree with you.", a:"I agree with you.", fr:"Je suis d'accord avec toi."},
+  {q:"He don't have no money.", a:"He doesn't have any money.", fr:"Il n'a pas d'argent."},
+  {q:"We was at the party.", a:"We were at the party.", fr:"Nous étions à la fête."},
+  {q:"I didn't went to school yesterday.", a:"I didn't go to school yesterday.", fr:"Je ne suis pas allé(e) à l'école hier."},
+  {q:"She is more taller than me.", a:"She is taller than me.", fr:"Elle est plus grande que moi."},
+  {q:"I have twenty years old.", a:"I am twenty years old.", fr:"J'ai vingt ans."},
+  {q:"He is depend on his parents.", a:"He depends on his parents.", fr:"Il dépend de ses parents."},
+  {q:"They discussed about the problem.", a:"They discussed the problem.", fr:"Ils ont discuté du problème."},
+  {q:"I am boring in this class.", a:"I am bored in this class.", fr:"Je m'ennuie dans ce cours."},
+  {q:"She said me that she was busy.", a:"She told me that she was busy.", fr:"Elle m'a dit qu'elle était occupée."},
+  {q:"I have visited Paris two years ago.", a:"I visited Paris two years ago.", fr:"J'ai visité Paris il y a deux ans."},
+  {q:"He is one of the best player.", a:"He is one of the best players.", fr:"Il est l'un des meilleurs joueurs."},
+  {q:"I would like to have a advice.", a:"I would like some advice.", fr:"J'aimerais avoir un conseil."},
+  {q:"She go to work by foot.", a:"She goes to work on foot.", fr:"Elle va au travail à pied."}
 ];
 
-// ---------- WEEKLY ROTATION ----------
-// Content set rotates automatically every Sunday, starting Sept 13, 2026.
-// No manual updates needed — the starting point in each list just shifts by one each week.
+// ---------- WEEKLY ROTATION (5 fresh items per category, no repeats until the bank cycles) ----------
+// Every Sunday, starting Sept 13, 2026, each category advances to its next non-overlapping
+// block of 5 items. Once a bank is fully cycled through, it starts over from the beginning —
+// but never repeats an item early. All banks are sized in multiples of 5 for this to be exact.
 const WEEK_ANCHOR = new Date(2026, 8, 13); // Sept 13, 2026 (month is 0-indexed)
+const ITEMS_PER_WEEK = 5;
 function getWeekIndex(){
   const now = new Date();
   const diffMs = now - WEEK_ANCHOR;
@@ -1540,11 +1660,30 @@ function getWeekStartLabel(){
 }
 const weekIndex = getWeekIndex();
 
+// Takes a fixed, non-overlapping 5-item block from `list`, advancing one block per week and
+// wrapping back to the start once the whole list has been covered. Requires list.length to be
+// a multiple of ITEMS_PER_WEEK (true for every bank in this file) so blocks never straddle the end.
+function getWeekSlice(list, count = ITEMS_PER_WEEK){
+  const total = list.length;
+  const start = (weekIndex * count) % total;
+  return list.slice(start, start + count);
+}
+
+const weeklyWarmups = getWeekSlice(warmups);
+const weeklyIdioms = getWeekSlice(idioms);
+const weeklyGrammar = getWeekSlice(grammarItems);
+const weeklyVocabCache = {};
+function getWeeklyVocab(topic){
+  if(!weeklyVocabCache[topic]) weeklyVocabCache[topic] = getWeekSlice(vocabTopics[topic]);
+  return weeklyVocabCache[topic];
+}
+
 // ---------- STATE ----------
-let warmupIdx = weekIndex % warmups.length;
-let vocabIdx = weekIndex % vocabTopics["General Everyday"].length;
-let idiomIdx = weekIndex % idioms.length;
-let grammarIdx = weekIndex % grammarItems.length;
+let warmupIdx = 0;
+let vocabIdx = 0;
+let idiomIdx = 0;
+let grammarIdx = 0;
+let vocab = getWeeklyVocab(currentVocabTopic);
 let scrambleWord = "";
 let timerSeconds = 120, timerInterval = null;
 
@@ -1692,11 +1831,11 @@ document.querySelectorAll('.nav-btn').forEach(btn=>{
 
 // ---------- WARM UP ----------
 function showWarmup(){
-  document.getElementById('warmup-index').textContent = `Question ${warmupIdx+1} of ${warmups.length}`;
-  document.getElementById('warmup-text').textContent = warmups[warmupIdx];
+  document.getElementById('warmup-index').textContent = `Question ${warmupIdx+1} of ${weeklyWarmups.length}`;
+  document.getElementById('warmup-text').textContent = weeklyWarmups[warmupIdx];
 }
-document.getElementById('warmup-next').onclick = ()=>{ warmupIdx = (warmupIdx+1)%warmups.length; showWarmup(); };
-document.getElementById('warmup-prev').onclick = ()=>{ warmupIdx = (warmupIdx-1+warmups.length)%warmups.length; showWarmup(); };
+document.getElementById('warmup-next').onclick = ()=>{ warmupIdx = (warmupIdx+1)%weeklyWarmups.length; showWarmup(); };
+document.getElementById('warmup-prev').onclick = ()=>{ warmupIdx = (warmupIdx-1+weeklyWarmups.length)%weeklyWarmups.length; showWarmup(); };
 
 // ---------- VOCAB ----------
 function showVocab(){
@@ -1739,8 +1878,8 @@ function populateTopicSelects(){
 }
 document.getElementById('vocab-topic').addEventListener('change', (e)=>{
   currentVocabTopic = e.target.value;
-  vocab = vocabTopics[currentVocabTopic];
-  vocabIdx = weekIndex % vocab.length;
+  vocab = getWeeklyVocab(currentVocabTopic);
+  vocabIdx = 0;
   showVocab();
 });
 document.getElementById('scramble-topic').addEventListener('change', (e)=>{
@@ -1750,8 +1889,8 @@ document.getElementById('scramble-topic').addEventListener('change', (e)=>{
 
 // ---------- IDIOM ----------
 function showIdiom(){
-  const i = idioms[idiomIdx];
-  document.getElementById('idiom-index').textContent = `Idiom ${idiomIdx+1} of ${idioms.length}`;
+  const i = weeklyIdioms[idiomIdx];
+  document.getElementById('idiom-index').textContent = `Idiom ${idiomIdx+1} of ${weeklyIdioms.length}`;
   document.getElementById('idiom-text').textContent = `"${i.t}"`;
   document.getElementById('idiom-meaning').textContent = i.m;
   document.getElementById('idiom-meaning').classList.add('hidden');
@@ -1762,13 +1901,13 @@ document.getElementById('idiom-reveal').onclick = ()=>{
   document.getElementById('idiom-meaning').classList.remove('hidden');
   document.getElementById('idiom-fr').classList.remove('hidden');
 };
-document.getElementById('idiom-next').onclick = ()=>{ idiomIdx = (idiomIdx+1)%idioms.length; showIdiom(); };
-document.getElementById('idiom-prev').onclick = ()=>{ idiomIdx = (idiomIdx-1+idioms.length)%idioms.length; showIdiom(); };
+document.getElementById('idiom-next').onclick = ()=>{ idiomIdx = (idiomIdx+1)%weeklyIdioms.length; showIdiom(); };
+document.getElementById('idiom-prev').onclick = ()=>{ idiomIdx = (idiomIdx-1+weeklyIdioms.length)%weeklyIdioms.length; showIdiom(); };
 
 // ---------- GRAMMAR ----------
 function showGrammar(){
-  const g = grammarItems[grammarIdx];
-  document.getElementById('grammar-index').textContent = `Sentence ${grammarIdx+1} of ${grammarItems.length}`;
+  const g = weeklyGrammar[grammarIdx];
+  document.getElementById('grammar-index').textContent = `Sentence ${grammarIdx+1} of ${weeklyGrammar.length}`;
   document.getElementById('grammar-text').textContent = g.q;
   document.getElementById('grammar-answer').textContent = "✓ " + g.a;
   document.getElementById('grammar-answer').classList.add('hidden');
@@ -1780,8 +1919,8 @@ document.getElementById('grammar-reveal').onclick = ()=>{
   document.getElementById('grammar-answer').classList.remove('hidden');
   document.getElementById('grammar-fr').classList.remove('hidden');
 };
-document.getElementById('grammar-next').onclick = ()=>{ grammarIdx = (grammarIdx+1)%grammarItems.length; showGrammar(); };
-document.getElementById('grammar-prev').onclick = ()=>{ grammarIdx = (grammarIdx-1+grammarItems.length)%grammarItems.length; showGrammar(); };
+document.getElementById('grammar-next').onclick = ()=>{ grammarIdx = (grammarIdx+1)%weeklyGrammar.length; showGrammar(); };
+document.getElementById('grammar-prev').onclick = ()=>{ grammarIdx = (grammarIdx-1+weeklyGrammar.length)%weeklyGrammar.length; showGrammar(); };
 document.getElementById('grammar-guess').addEventListener('keydown', (e)=>{
   if(e.key === 'Enter'){ e.preventDefault(); document.getElementById('grammar-reveal').click(); }
 });
@@ -1801,9 +1940,9 @@ let currentScrambleTopic = "General Everyday";
 let scrambleHistory = [];
 let scrambleHistoryIdx = -1;
 function generateScrambleItem(){
-  const fullList = vocabTopics[currentScrambleTopic];
-  const list = fullList.filter(item=>!item.w.includes(' '));
-  const source = list.length ? list : fullList;
+  const weeklyList = getWeeklyVocab(currentScrambleTopic);
+  const list = weeklyList.filter(item=>!item.w.includes(' '));
+  const source = list.length ? list : weeklyList;
   const v = source[Math.floor(Math.random()*source.length)];
   return { word: v.w, hint: v.d, letters: scramble(v.w.toUpperCase()) };
 }
@@ -1902,7 +2041,7 @@ document.getElementById('gate-name-input').addEventListener('keydown', (e)=>{
 // ---------- INIT ----------
 populateTopicSelects();
 refreshStudentSelect();
-document.getElementById('week-label').textContent = `📅 Content set: week of ${getWeekStartLabel()}`;
+document.getElementById('week-label').textContent = `📅 Week of ${getWeekStartLabel()} — 5 fresh items each in Warm-up, Idioms & Grammar`;
 showWarmup(); showVocab(); showIdiom(); showGrammar(); showScramble(); renderTimer(); updateScoreDisplay();
 </script>
 </body>
