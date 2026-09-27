@@ -364,6 +364,12 @@
     line-height:1.4;
   }
 
+/* ---- French lines inside Interview Prep ---- */
+.interview-doc .fr-text{font-size:13.5px;margin-top:6px;}
+.interview-doc .qcard .question + .fr-text{margin:-2px 0 10px;}
+.interview-doc .ask-list .fr-text{margin:0 0 4px;}
+.interview-doc .fr-box li{color:var(--idoc-bad);font-style:italic;}
+
 /* ---- Passive Voice lesson (scoped) ---- */
 .passive-doc .pv-body{font-size:15px;margin:14px 0 0;}
 .passive-doc .pv-compare{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0 14px;}
@@ -400,6 +406,8 @@
 .passive-doc ol.pv-ex details.reveal{border-top:none;padding-top:0;}
 .passive-doc .pv-story{font-size:16.5px;line-height:1.75;margin:0;}
 .passive-doc .pv-story.show .pv-v{background:var(--idoc-accent-soft);color:var(--idoc-accent);font-weight:700;border-radius:3px;padding:0 2px;}
+.passive-doc .fr-text{font-size:13.5px;margin-top:5px;}
+.passive-doc .pv-sentence .fr-text{font-family:"IBM Plex Sans",sans-serif;}
 .passive-doc .pv-h3{font-size:18px;margin:28px 0 4px;}
 @media (max-width:620px){.passive-doc .pv-compare,.passive-doc .pv-why-grid{grid-template-columns:1fr;}}
 
@@ -1042,11 +1050,11 @@
     <div class="pv-compare">
       <div class="pv-side active-side">
         <div class="pv-label">Active — the doer leads</div>
-        <div class="pv-sentence"><span class="pv-doer">Bouygues Business</span> hired <span class="pv-recv">Nelly</span>.</div>
+        <div class="pv-sentence"><span class="pv-doer">Bouygues Business</span> hired <span class="pv-recv">Nelly</span>.</div><div class="fr-text">Bouygues Business a embauché Nelly.</div>
       </div>
       <div class="pv-side passive-side">
         <div class="pv-label">Passive — the receiver leads</div>
-        <div class="pv-sentence"><span class="pv-recv">Nelly</span> <strong>was hired</strong> by <span class="pv-doer">Bouygues Business</span>.</div>
+        <div class="pv-sentence"><span class="pv-recv">Nelly</span> <strong>was hired</strong> by <span class="pv-doer">Bouygues Business</span>.</div><div class="fr-text">Nelly a été embauchée par Bouygues Business.</div>
       </div>
     </div>
     <p class="pv-body">That's the whole idea. In the <strong>active</strong> voice, the doer is the subject. In the <strong>passive</strong> voice, the receiver becomes the subject, and the doer either moves to the end (after "by") or disappears completely.</p>
@@ -1078,10 +1086,10 @@
     <div class="block-head"><span class="block-num">03</span><h2>Why (and when) to use it</h2></div>
     <p class="block-intro">The passive isn't just a grammar exercise — native speakers reach for it on purpose, especially in business English.</p>
     <div class="pv-why-grid">
-      <div class="qcard"><span class="idoc-tag">1 · Unknown doer</span><p class="pv-why-t">The doer is unknown.</p><p class="why">"My laptop <strong>was stolen</strong>." — we don't know who did it.</p></div>
-      <div class="qcard"><span class="idoc-tag">2 · Obvious doer</span><p class="pv-why-t">The doer is obvious or unimportant.</p><p class="why">"The offices <strong>are cleaned</strong> every night." — obviously by the cleaning staff; not worth naming.</p></div>
-      <div class="qcard"><span class="idoc-tag">3 · Formal register</span><p class="pv-why-t">You want to sound formal, objective, or report-like.</p><p class="why">"Prices <strong>were increased</strong> by 15% last quarter." This is the register of business reports, press releases, and performance reviews — exactly where Nelly will use English most.</p></div>
-      <div class="qcard"><span class="idoc-tag">4 · Result first</span><p class="pv-why-t">The result matters more than who caused it.</p><p class="why">"The targets <strong>were exceeded</strong>." — the achievement is the point, not the individual credit.</p></div>
+      <div class="qcard"><span class="idoc-tag">1 · Unknown doer</span><p class="pv-why-t">The doer is unknown.</p><p class="why">"My laptop <strong>was stolen</strong>." — we don't know who did it.</p><div class="fr-text">Mon ordinateur portable a été volé.</div></div>
+      <div class="qcard"><span class="idoc-tag">2 · Obvious doer</span><p class="pv-why-t">The doer is obvious or unimportant.</p><p class="why">"The offices <strong>are cleaned</strong> every night." — obviously by the cleaning staff; not worth naming.</p><div class="fr-text">Les bureaux sont nettoyés tous les soirs.</div></div>
+      <div class="qcard"><span class="idoc-tag">3 · Formal register</span><p class="pv-why-t">You want to sound formal, objective, or report-like.</p><p class="why">"Prices <strong>were increased</strong> by 15% last quarter." This is the register of business reports, press releases, and performance reviews — exactly where Nelly will use English most.</p><div class="fr-text">Les prix ont été augmentés de 15 % le trimestre dernier.</div></div>
+      <div class="qcard"><span class="idoc-tag">4 · Result first</span><p class="pv-why-t">The result matters more than who caused it.</p><p class="why">"The targets <strong>were exceeded</strong>." — the achievement is the point, not the individual credit.</p><div class="fr-text">Les objectifs ont été dépassés.</div></div>
     </div>
   </section>
 
@@ -1125,10 +1133,10 @@
       <p class="question">Active or Passive?</p>
       <p class="why">Write A or P next to each sentence.</p>
       <ol class="pv-ex">
-        <li><span class="pv-q">The manager reviews every contract.</span><input class="pv-input short" placeholder="A / P"><details class="reveal"><summary>Check</summary><div class="answer-box"><strong>Active</strong> — "the manager" does the reviewing.</div></details></li>
-        <li><span class="pv-q">Cybersecurity training is offered every month.</span><input class="pv-input short" placeholder="A / P"><details class="reveal"><summary>Check</summary><div class="answer-box"><strong>Passive</strong> — we don't know (or need) who offers it.</div></details></li>
-        <li><span class="pv-q">New hires were trained by the HR department.</span><input class="pv-input short" placeholder="A / P"><details class="reveal"><summary>Check</summary><div class="answer-box"><strong>Passive</strong> — "new hires" receives the action; "by the HR department" names the doer.</div></details></li>
-        <li><span class="pv-q">Palo Alto Networks values disruption and integrity.</span><input class="pv-input short" placeholder="A / P"><details class="reveal"><summary>Check</summary><div class="answer-box"><strong>Active</strong> — "Palo Alto Networks" is the doer.</div></details></li>
+        <li><span class="pv-q">The manager reviews every contract.</span><input class="pv-input short" placeholder="A / P"><details class="reveal"><summary>Check</summary><div class="answer-box"><strong>Active</strong> — "the manager" does the reviewing.<div class="fr-text">Le manager examine chaque contrat.</div></div></details></li>
+        <li><span class="pv-q">Cybersecurity training is offered every month.</span><input class="pv-input short" placeholder="A / P"><details class="reveal"><summary>Check</summary><div class="answer-box"><strong>Passive</strong> — we don't know (or need) who offers it.<div class="fr-text">Une formation en cybersécurité est proposée chaque mois.</div></div></details></li>
+        <li><span class="pv-q">New hires were trained by the HR department.</span><input class="pv-input short" placeholder="A / P"><details class="reveal"><summary>Check</summary><div class="answer-box"><strong>Passive</strong> — "new hires" receives the action; "by the HR department" names the doer.<div class="fr-text">Les nouvelles recrues ont été formées par le service RH.</div></div></details></li>
+        <li><span class="pv-q">Palo Alto Networks values disruption and integrity.</span><input class="pv-input short" placeholder="A / P"><details class="reveal"><summary>Check</summary><div class="answer-box"><strong>Active</strong> — "Palo Alto Networks" is the doer.<div class="fr-text">Palo Alto Networks valorise la disruption et l'intégrité.</div></div></details></li>
       </ol>
     </div>
 
@@ -1137,10 +1145,10 @@
       <p class="question">Rewrite in the passive voice</p>
       <p class="why">Keep the same tense as the original sentence.</p>
       <ol class="pv-ex">
-        <li><span class="pv-q">Bouygues Business promoted Nelly to Regional Manager.</span><input class="pv-input" placeholder="Type the passive sentence..."><details class="reveal"><summary>Check</summary><div class="answer-box">Nelly was promoted to Regional Manager (by Bouygues Business).</div></details></li>
-        <li><span class="pv-q">The HR team recruits new employees every quarter.</span><input class="pv-input" placeholder="Type the passive sentence..."><details class="reveal"><summary>Check</summary><div class="answer-box">New employees are recruited every quarter (by the HR team).</div></details></li>
-        <li><span class="pv-q">Palo Alto Networks will launch a new product next year.</span><input class="pv-input" placeholder="Type the passive sentence..."><details class="reveal"><summary>Check</summary><div class="answer-box">A new product will be launched next year (by Palo Alto Networks).</div></details></li>
-        <li><span class="pv-q">You must send the invoice before Friday.</span><input class="pv-input" placeholder="Type the passive sentence..."><details class="reveal"><summary>Check</summary><div class="answer-box">The invoice must be sent before Friday.</div></details></li>
+        <li><span class="pv-q">Bouygues Business promoted Nelly to Regional Manager.</span><input class="pv-input" placeholder="Type the passive sentence..."><details class="reveal"><summary>Check</summary><div class="answer-box">Nelly was promoted to Regional Manager (by Bouygues Business).<div class="fr-text">Nelly a été promue Responsable Régionale (par Bouygues Business).</div></div></details></li>
+        <li><span class="pv-q">The HR team recruits new employees every quarter.</span><input class="pv-input" placeholder="Type the passive sentence..."><details class="reveal"><summary>Check</summary><div class="answer-box">New employees are recruited every quarter (by the HR team).<div class="fr-text">De nouveaux employés sont recrutés chaque trimestre (par l'équipe RH).</div></div></details></li>
+        <li><span class="pv-q">Palo Alto Networks will launch a new product next year.</span><input class="pv-input" placeholder="Type the passive sentence..."><details class="reveal"><summary>Check</summary><div class="answer-box">A new product will be launched next year (by Palo Alto Networks).<div class="fr-text">Un nouveau produit sera lancé l'année prochaine (par Palo Alto Networks).</div></div></details></li>
+        <li><span class="pv-q">You must send the invoice before Friday.</span><input class="pv-input" placeholder="Type the passive sentence..."><details class="reveal"><summary>Check</summary><div class="answer-box">The invoice must be sent before Friday.<div class="fr-text">La facture doit être envoyée avant vendredi.</div></div></details></li>
       </ol>
     </div>
 
@@ -1149,11 +1157,11 @@
       <p class="question">Choose the correct passive form</p>
       <p class="why">Put the verb in brackets into the correct passive tense.</p>
       <ol class="pv-ex">
-        <li><span class="pv-q">The results ______ (announce) tomorrow.</span><input class="pv-input" placeholder="Your answer..."><details class="reveal"><summary>Check</summary><div class="answer-box">will be announced</div></details></li>
-        <li><span class="pv-q">This report ______ (write) last week.</span><input class="pv-input" placeholder="Your answer..."><details class="reveal"><summary>Check</summary><div class="answer-box">was written</div></details></li>
-        <li><span class="pv-q">Employees ______ (train) every year.</span><input class="pv-input" placeholder="Your answer..."><details class="reveal"><summary>Check</summary><div class="answer-box">are trained</div></details></li>
-        <li><span class="pv-q">The contract ______ already ______ (sign).</span><input class="pv-input" placeholder="Your answer..."><details class="reveal"><summary>Check</summary><div class="answer-box">has already been signed</div></details></li>
-        <li><span class="pv-q">The meeting ______ (postpone) because of the storm.</span><input class="pv-input" placeholder="Your answer..."><details class="reveal"><summary>Check</summary><div class="answer-box">was postponed</div></details></li>
+        <li><span class="pv-q">The results ______ (announce) tomorrow.</span><input class="pv-input" placeholder="Your answer..."><details class="reveal"><summary>Check</summary><div class="answer-box">will be announced<div class="fr-text">Les résultats seront annoncés demain.</div></div></details></li>
+        <li><span class="pv-q">This report ______ (write) last week.</span><input class="pv-input" placeholder="Your answer..."><details class="reveal"><summary>Check</summary><div class="answer-box">was written<div class="fr-text">Ce rapport a été rédigé la semaine dernière.</div></div></details></li>
+        <li><span class="pv-q">Employees ______ (train) every year.</span><input class="pv-input" placeholder="Your answer..."><details class="reveal"><summary>Check</summary><div class="answer-box">are trained<div class="fr-text">Les employés sont formés chaque année.</div></div></details></li>
+        <li><span class="pv-q">The contract ______ already ______ (sign).</span><input class="pv-input" placeholder="Your answer..."><details class="reveal"><summary>Check</summary><div class="answer-box">has already been signed<div class="fr-text">Le contrat a déjà été signé.</div></div></details></li>
+        <li><span class="pv-q">The meeting ______ (postpone) because of the storm.</span><input class="pv-input" placeholder="Your answer..."><details class="reveal"><summary>Check</summary><div class="answer-box">was postponed<div class="fr-text">La réunion a été reportée à cause de la tempête.</div></div></details></li>
       </ol>
     </div>
 
@@ -1162,10 +1170,10 @@
       <p class="question">Business challenge round</p>
       <p class="why">Same task, sales &amp; interview vocabulary this time.</p>
       <ol class="pv-ex">
-        <li><span class="pv-q">Palo Alto Networks develops innovative security solutions.</span><input class="pv-input" placeholder="Type the passive sentence..."><details class="reveal"><summary>Check</summary><div class="answer-box">Innovative security solutions are developed by Palo Alto Networks.</div></details></li>
-        <li><span class="pv-q">The company hired 200 new salespeople last year.</span><input class="pv-input" placeholder="Type the passive sentence..."><details class="reveal"><summary>Check</summary><div class="answer-box">200 new salespeople were hired last year.</div></details></li>
-        <li><span class="pv-q">The team has completed the territory plan.</span><input class="pv-input" placeholder="Type the passive sentence..."><details class="reveal"><summary>Check</summary><div class="answer-box">The territory plan has been completed.</div></details></li>
-        <li><span class="pv-q">Managers must submit forecasts every month.</span><input class="pv-input" placeholder="Type the passive sentence..."><details class="reveal"><summary>Check</summary><div class="answer-box">Forecasts must be submitted every month.</div></details></li>
+        <li><span class="pv-q">Palo Alto Networks develops innovative security solutions.</span><input class="pv-input" placeholder="Type the passive sentence..."><details class="reveal"><summary>Check</summary><div class="answer-box">Innovative security solutions are developed by Palo Alto Networks.<div class="fr-text">Des solutions de sécurité innovantes sont développées par Palo Alto Networks.</div></div></details></li>
+        <li><span class="pv-q">The company hired 200 new salespeople last year.</span><input class="pv-input" placeholder="Type the passive sentence..."><details class="reveal"><summary>Check</summary><div class="answer-box">200 new salespeople were hired last year.<div class="fr-text">200 nouveaux commerciaux ont été embauchés l'année dernière.</div></div></details></li>
+        <li><span class="pv-q">The team has completed the territory plan.</span><input class="pv-input" placeholder="Type the passive sentence..."><details class="reveal"><summary>Check</summary><div class="answer-box">The territory plan has been completed.<div class="fr-text">Le plan de territoire a été finalisé.</div></div></details></li>
+        <li><span class="pv-q">Managers must submit forecasts every month.</span><input class="pv-input" placeholder="Type the passive sentence..."><details class="reveal"><summary>Check</summary><div class="answer-box">Forecasts must be submitted every month.<div class="fr-text">Les prévisions doivent être soumises chaque mois.</div></div></details></li>
       </ol>
     </div>
     <div style="text-align:center;margin-top:6px;">
@@ -1186,17 +1194,21 @@
         <summary>Reveal the list</summary>
         <div class="answer-box">was hired · was given · was analyzed · was created · were recruited · were eliminated · were organized · were encouraged · was seen · was raised · was recorded</div>
       </details>
+      <details class="reveal">
+        <summary>Traduction française</summary>
+        <div class="answer-box"><div class="fr-text">Quand Nelly a été embauchée par Bouygues Business, on lui a confié l'agence la plus difficile de la région. La situation a été soigneusement analysée, et un plan d'action détaillé a été élaboré. Plusieurs nouveaux employés ont été recrutés, tandis que quelques postes ont également été supprimés lors de la restructuration. Des ateliers réguliers ont été organisés pour aider l'équipe à développer ses compétences en cybersécurité, en cloud computing et en IA. Les employés ont été encouragés à partager leurs opinions lors de forums ouverts, car la communication était considérée comme la clé d'une transformation réussie. Résultat : la rentabilité a été portée de 40 % à 90 % en seulement trois ans, et d'excellents retours ont été enregistrés dans les dernières enquêtes de satisfaction client.</div><p style="margin:10px 0 0;font-size:13px;"><strong>À remarquer :</strong> « she was given » devient « <em>on lui a confié</em> » — là où le français utilise « on », l'anglais préfère souvent le passif.</p></div>
+      </details>
     </div>
 
     <h3 class="pv-h3">Bonus: the same idea, two ways</h3>
     <p class="block-intro">In a real interview, Nelly can choose either voice on purpose. Active sounds personal and confident; passive sounds like a calm, objective result.</p>
     <div class="pv-compare">
-      <div class="pv-side active-side"><div class="pv-label">Active — claims the credit</div><div class="pv-sentence small">I recruited new employees and I trained the team on cybersecurity.</div></div>
-      <div class="pv-side passive-side"><div class="pv-label">Passive — states the result</div><div class="pv-sentence small">New employees were recruited, and the team was trained on cybersecurity.</div></div>
+      <div class="pv-side active-side"><div class="pv-label">Active — claims the credit</div><div class="pv-sentence small">I recruited new employees and I trained the team on cybersecurity.</div><div class="fr-text">J'ai recruté de nouveaux employés et j'ai formé l'équipe à la cybersécurité.</div></div>
+      <div class="pv-side passive-side"><div class="pv-label">Passive — states the result</div><div class="pv-sentence small">New employees were recruited, and the team was trained on cybersecurity.</div><div class="fr-text">De nouveaux employés ont été recrutés, et l'équipe a été formée à la cybersécurité.</div></div>
     </div>
     <div class="pv-compare">
-      <div class="pv-side active-side"><div class="pv-label">Active</div><div class="pv-sentence small">We raised profitability from 40% to 90% in three years.</div></div>
-      <div class="pv-side passive-side"><div class="pv-label">Passive</div><div class="pv-sentence small">Profitability was raised from 40% to 90% in three years.</div></div>
+      <div class="pv-side active-side"><div class="pv-label">Active</div><div class="pv-sentence small">We raised profitability from 40% to 90% in three years.</div><div class="fr-text">Nous avons fait passer la rentabilité de 40 % à 90 % en trois ans.</div></div>
+      <div class="pv-side passive-side"><div class="pv-label">Passive</div><div class="pv-sentence small">Profitability was raised from 40% to 90% in three years.</div><div class="fr-text">La rentabilité a été portée de 40 % à 90 % en trois ans.</div></div>
     </div>
     <div class="callout"><span class="mark">Coach's note</span>&nbsp;Best interview answers usually mix both: active for "what I decided to do," passive for "what was achieved." Too much passive in a row can sound like she's hiding who actually did the work — so use it deliberately, not as a default.</div>
   </section>
@@ -1263,7 +1275,7 @@
 
     <div class="qcard">
       <span class="idoc-tag">Icebreaker</span>
-      <p class="question">"So, tell me a bit about yourself and what brings you to this role."</p>
+      <p class="question">"So, tell me a bit about yourself and what brings you to this role."</p><div class="fr-text">« Parlez-moi un peu de vous et de ce qui vous amène vers ce poste. »</div>
       <p class="why">Why they ask: they want the 90-second version of the story you'll spend the rest of the interview proving.</p>
       <details class="reveal">
         <summary>Model-answer angle</summary>
@@ -1274,6 +1286,10 @@
             <li>Land on the "why now": she's ready to trade the manager's chair for direct client relationships and cybersecurity strategy again — the thing that energizes her most.</li>
           </ul>
         </div>
+      </details>
+      <details class="reveal">
+        <summary>Traduction française</summary>
+        <div class="answer-box fr-box"><ul><li>Ouvrir sur le parcours : Orange Business → débauchée par Bouygues Business comme Directrice Régionale Sud-Est pour redresser l'agence aux plus mauvais résultats du pays.</li><li>Une phrase sur le résultat : la rentabilité est passée de 40 % à 90 % en trois ans, avec un EBE solide.</li><li>Conclure sur le « pourquoi maintenant » : elle est prête à quitter le fauteuil de manager pour retrouver la relation client directe et la stratégie cybersécurité — ce qui la motive le plus.</li></ul></div>
       </details>
       <details class="reveal">
         <summary>Vocabulary</summary>
@@ -1288,7 +1304,7 @@
 
     <div class="qcard">
       <span class="idoc-tag">Icebreaker</span>
-      <p class="question">"Walk me through your career so far."</p>
+      <p class="question">"Walk me through your career so far."</p><div class="fr-text">« Présentez-moi votre parcours jusqu'à présent. »</div>
       <p class="why">Why they ask: a chronology check, and a chance to see if she can narrate her own career, not just list job titles.</p>
       <details class="reveal">
         <summary>Model-answer angle</summary>
@@ -1298,6 +1314,10 @@
             <li>Each chapter gets one concrete result, not a job description.</li>
           </ul>
         </div>
+      </details>
+      <details class="reveal">
+        <summary>Traduction française</summary>
+        <div class="answer-box fr-box"><ul><li>Se limiter à 3 chapitres : Orange Business → redressement chez Bouygues Business → formatrice indépendante à KEDGE et à l'ESGI (Zero Trust, NIS2, cybersécurité, approche B2B).</li><li>Chaque chapitre reçoit un résultat concret, pas une description de poste.</li></ul></div>
       </details>
       <div class="practiced-row"><label><input type="checkbox">Practiced out loud</label></div>
     </div>
@@ -1310,7 +1330,7 @@
 
     <div class="qcard">
       <span class="idoc-tag">Behavioral · STAR</span>
-      <p class="question">"Tell me about a time you turned around an underperforming team or business unit."</p>
+      <p class="question">"Tell me about a time you turned around an underperforming team or business unit."</p><div class="fr-text">« Parlez-moi d'une fois où vous avez redressé une équipe ou une unité en difficulté. »</div>
       <p class="why">Why they ask: this role owns a territory's revenue outcome — they need proof she can fix a broken situation, not just run a healthy one.</p>
       <details class="reveal">
         <summary>Model-answer angle (STAR)</summary>
@@ -1322,6 +1342,10 @@
             <li><strong>Result</strong> — profitability up from 40% to 90% in three years, EBITDA held steady, employees staying and developing, client satisfaction scores improving.</li>
           </ul>
         </div>
+      </details>
+      <details class="reveal">
+        <summary>Traduction française</summary>
+        <div class="answer-box fr-box"><ul><li><strong>Situation</strong> — choisie pour diriger l'agence française aux résultats les plus faibles, au turnover le plus élevé et à la plus faible visibilité locale.</li><li><strong>Tâche</strong> — rétablir la performance et le moral, sans méthode préexistante.</li><li><strong>Action</strong> — observer et analyser d'abord ; construire des plans d'action structurés ; cartographier les ressources (« qui fait quoi, quand, comment ») ; travailler avec les RH sur les recrutements comme sur les licenciements (vente, avant-vente, experts, gestion de projet, après-vente) ; déployer des formations en cybersécurité et des ateliers sur le cloud, l'IA et la qualification ; visiter d'autres régions pour s'inspirer des meilleures pratiques ; organiser des forums où salariés et clients pouvaient s'exprimer librement.</li><li><strong>Résultat</strong> — rentabilité passée de 40 % à 90 % en trois ans, EBE stable, salariés qui restent et progressent, satisfaction client en hausse.</li></ul></div>
       </details>
       <details class="reveal">
         <summary>Vocabulary</summary>
@@ -1337,7 +1361,7 @@
 
     <div class="qcard">
       <span class="idoc-tag">Behavioral</span>
-      <p class="question">"How do you build buy-in when you're leading people through change they didn't ask for?"</p>
+      <p class="question">"How do you build buy-in when you're leading people through change they didn't ask for?"</p><div class="fr-text">« Comment obtenez-vous l'adhésion quand vous menez des personnes à travers un changement qu'elles n'ont pas demandé ? »</div>
       <p class="why">Why they ask: sales managers who can't get quiet buy-in from partners and internal teams stall out fast.</p>
       <details class="reveal">
         <summary>Model-answer angle</summary>
@@ -1347,6 +1371,10 @@
             <li>Concrete proof: regular workshops and open forums where employees and clients could raise concerns — not a one-way announcement.</li>
           </ul>
         </div>
+      </details>
+      <details class="reveal">
+        <summary>Traduction française</summary>
+        <div class="answer-box fr-box"><ul><li>Son propre principe, écrit dans sa lettre de motivation : « la communication est la clé d'une transformation réussie ».</li><li>Preuve concrète : des ateliers réguliers et des forums ouverts où salariés et clients pouvaient exprimer leurs inquiétudes — pas une annonce à sens unique.</li></ul></div>
       </details>
       <details class="reveal">
         <summary>Vocabulary</summary>
@@ -1367,7 +1395,7 @@
 
     <div class="qcard">
       <span class="idoc-tag">Technical credibility</span>
-      <p class="question">"How comfortable are you discussing SaaS-based security architecture with a technical customer?"</p>
+      <p class="question">"How comfortable are you discussing SaaS-based security architecture with a technical customer?"</p><div class="fr-text">« Êtes-vous à l'aise pour parler d'architecture de sécurité SaaS avec un client technique ? »</div>
       <p class="why">Why they ask: this is a listed qualification — "experience and knowledge of SaaS-based architectures, ideally in networking and/or security."</p>
       <details class="reveal">
         <summary>Model-answer angle</summary>
@@ -1378,13 +1406,17 @@
           </ul>
         </div>
       </details>
-      <div class="callout"><span class="mark">Coach's note</span>&nbsp;Lead with "I teach this" before "I've sold this" — it's the more unusual, more memorable credential.</div>
+      <details class="reveal">
+        <summary>Traduction française</summary>
+        <div class="answer-box fr-box"><ul><li>Son meilleur atout : elle est formatrice indépendante à KEDGE (Marseille) et à l'ESGI (Aix-en-Provence) en Zero Trust, NIS2, cybersécurité et configuration de pare-feu — le cœur même du positionnement de Palo Alto.</li><li>Ajouter les ateliers internes animés chez Bouygues sur le cloud, la cybersécurité et l'IA pour les équipes vente, avant-vente et projet — preuve qu'elle sait traduire des concepts techniques pour des non-techniciens, ce qui est justement la vente consultative.</li></ul></div>
+      </details>
+      <div class="callout"><span class="mark">Coach's note</span>&nbsp;<div>Lead with "I teach this" before "I've sold this" — it's the more unusual, more memorable credential.<div class="fr-text">Commencer par « je l'enseigne » avant « je l'ai vendu » — c'est l'argument le plus rare et le plus marquant.</div></div></div>
       <div class="practiced-row"><label><input type="checkbox">Practiced out loud</label></div>
     </div>
 
     <div class="qcard">
       <span class="idoc-tag">Sales method</span>
-      <p class="question">"How do you approach value selling versus simply presenting features?"</p>
+      <p class="question">"How do you approach value selling versus simply presenting features?"</p><div class="fr-text">« Comment abordez-vous la vente de valeur, plutôt que la simple présentation de fonctionnalités ? »</div>
       <p class="why">Why they ask: listed almost verbatim — "demonstrated experience selling complex solutions, value selling, and/or consultative sales techniques."</p>
       <details class="reveal">
         <summary>Model-answer angle</summary>
@@ -1395,12 +1427,16 @@
           </ul>
         </div>
       </details>
+      <details class="reveal">
+        <summary>Traduction française</summary>
+        <div class="answer-box fr-box"><ul><li>Présenter son redressement comme une vente diagnostique : elle n'a pas commencé par une solution, mais par l'observation et l'analyse des causes profondes, puis seulement le plan d'action — exactement la posture demandée dans l'offre.</li><li>Si elle a une histoire client concrète (même chez Orange Business), c'est le moment de la raconter.</li></ul></div>
+      </details>
       <div class="practiced-row"><label><input type="checkbox">Practiced out loud</label></div>
     </div>
 
     <div class="qcard">
       <span class="idoc-tag">Honest gap</span>
-      <p class="question">"This role sells largely through channel partners. Tell me about your experience building partner relationships."</p>
+      <p class="question">"This role sells largely through channel partners. Tell me about your experience building partner relationships."</p><div class="fr-text">« Ce poste vend en grande partie via des partenaires de distribution. Parlez-moi de votre expérience dans la construction de relations avec des partenaires. »</div>
       <p class="why">Why they ask: "cultivate relationships with our channel partners" is a named responsibility — and it's the one area where Nelly's CV doesn't give a direct example.</p>
       <details class="reveal">
         <summary>Model-answer angle</summary>
@@ -1411,13 +1447,17 @@
           </ul>
         </div>
       </details>
-      <div class="callout"><span class="mark">Coach's note</span>&nbsp;This is the one question worth rehearsing until it sounds calm, not defensive.</div>
+      <details class="reveal">
+        <summary>Traduction française</summary>
+        <div class="answer-box fr-box"><ul><li>Ne pas esquiver, faire le lien : en tant que directrice régionale, elle a coordonné un réseau de parties prenantes internes et externes (RH, vente, avant-vente, clients) vers un même objectif — la même compétence relationnelle qu'exige la vente indirecte.</li><li>Nommer honnêtement le manque, puis s'engager : « la couverture des partenaires est la partie de ce poste que j'ai le plus hâte de construire ».</li></ul></div>
+      </details>
+      <div class="callout"><span class="mark">Coach's note</span>&nbsp;<div>This is the one question worth rehearsing until it sounds calm, not defensive.<div class="fr-text">C'est LA question à répéter jusqu'à ce qu'elle sonne calme, pas défensive.</div></div></div>
       <div class="practiced-row"><label><input type="checkbox">Practiced out loud</label></div>
     </div>
 
     <div class="qcard">
       <span class="idoc-tag">Sales operations</span>
-      <p class="question">"How would you go about building a territory plan and keeping your forecast accurate?"</p>
+      <p class="question">"How would you go about building a territory plan and keeping your forecast accurate?"</p><div class="fr-text">« Comment construiriez-vous un plan de territoire tout en gardant des prévisions fiables ? »</div>
       <p class="why">Why they ask: "create clear goals and complete accurate forecasting through developing a detailed territory plan" is a listed responsibility.</p>
       <details class="reveal">
         <summary>Model-answer angle</summary>
@@ -1426,6 +1466,10 @@
             <li>Reuse her own turnaround method almost word-for-word: map the resources and accounts first ("who, what, when, how"), set milestones, then review regularly — the same discipline she used to plan the branch recovery, just applied to a territory instead of a region.</li>
           </ul>
         </div>
+      </details>
+      <details class="reveal">
+        <summary>Traduction française</summary>
+        <div class="answer-box fr-box"><ul><li>Reprendre presque mot pour mot sa méthode de redressement : cartographier d'abord les ressources et les comptes (« qui, quoi, quand, comment »), fixer des jalons, puis faire des points réguliers — la même discipline que pour l'agence, appliquée à un territoire plutôt qu'à une région.</li></ul></div>
       </details>
       <details class="reveal">
         <summary>Vocabulary</summary>
@@ -1447,7 +1491,7 @@
 
     <div class="qcard">
       <span class="idoc-tag">The hard one</span>
-      <p class="question">"You've been in a regional leadership role. Why move back into an individual, quota-carrying sales position?"</p>
+      <p class="question">"You've been in a regional leadership role. Why move back into an individual, quota-carrying sales position?"</p><div class="fr-text">« Vous avez occupé un poste de direction régionale. Pourquoi revenir à un poste de vente individuel, avec objectif de vente ? »</div>
       <p class="why">Why they ask: on paper this can read as a step down — they need to hear it framed as a choice, not a setback.</p>
       <details class="reveal">
         <summary>Model-answer angle</summary>
@@ -1459,7 +1503,11 @@
           </ul>
         </div>
       </details>
-      <div class="callout"><span class="mark">Coach's note</span>&nbsp;Energy matters more than logic here — this should sound like enthusiasm, not justification.</div>
+      <details class="reveal">
+        <summary>Traduction française</summary>
+        <div class="answer-box fr-box"><ul><li>Reprendre sa propre phrase presque mot pour mot : « Il est temps pour moi de revenir à ce qui m'inspire le plus — construire des relations de confiance et développer une stratégie commerciale partagée, centrée sur la cybersécurité. »</li><li>Ajouter la preuve : elle n'a jamais vraiment quitté le terrain — elle enseigne encore le Zero Trust et NIS2, ce qui montre un véritable attrait pour le sujet, pas une histoire inventée pour l'entretien.</li><li>Conclure en regardant vers l'avenir : « J'ai prouvé que je savais redresser une entreprise par le haut. Maintenant, je veux prouver que je peux la développer, une relation client à la fois, dans le secteur que j'enseigne déjà. »</li></ul></div>
+      </details>
+      <div class="callout"><span class="mark">Coach's note</span>&nbsp;<div>Energy matters more than logic here — this should sound like enthusiasm, not justification.<div class="fr-text">Ici, l'énergie compte plus que la logique — cela doit sonner comme de l'enthousiasme, pas comme une justification.</div></div></div>
       <div class="practiced-row"><label><input type="checkbox">Practiced out loud</label></div>
     </div>
   </section>
@@ -1471,7 +1519,7 @@
 
     <div class="qcard">
       <span class="idoc-tag">Values</span>
-      <p class="question">"Tell me about a time you challenged the status quo."</p>
+      <p class="question">"Tell me about a time you challenged the status quo."</p><div class="fr-text">« Parlez-moi d'une fois où vous avez remis en question le statu quo. »</div>
       <p class="why">Why they ask: "Disruption" is the first value listed on their own careers page.</p>
       <details class="reveal">
         <summary>Model-answer angle</summary>
@@ -1481,12 +1529,16 @@
           </ul>
         </div>
       </details>
+      <details class="reveal">
+        <summary>Traduction française</summary>
+        <div class="answer-box fr-box"><ul><li>Prendre l'agence dont personne ne voulait et refuser de la gérer à l'ancienne — en commençant par l'analyse plutôt que par une solution rapide — c'est ça, l'histoire de disruption.</li></ul></div>
+      </details>
       <div class="practiced-row"><label><input type="checkbox">Practiced out loud</label></div>
     </div>
 
     <div class="qcard">
       <span class="idoc-tag">Values</span>
-      <p class="question">"Cybersecurity moves fast. How do you stay current?"</p>
+      <p class="question">"Cybersecurity moves fast. How do you stay current?"</p><div class="fr-text">« La cybersécurité évolue vite. Comment restez-vous à jour ? »</div>
       <p class="why">Why they ask: continuous learning matters more here than in most sales roles — the product line changes constantly.</p>
       <details class="reveal">
         <summary>Model-answer angle</summary>
@@ -1495,6 +1547,10 @@
             <li>The honest answer is also the strongest one: she has to stay current to keep teaching Zero Trust and NIS2 at KEDGE and ESGI — teaching is what forces the learning.</li>
           </ul>
         </div>
+      </details>
+      <details class="reveal">
+        <summary>Traduction française</summary>
+        <div class="answer-box fr-box"><ul><li>La réponse honnête est aussi la plus forte : elle doit rester à jour pour continuer à enseigner le Zero Trust et NIS2 à KEDGE et à l'ESGI — c'est l'enseignement qui l'oblige à apprendre.</li></ul></div>
       </details>
       <div class="practiced-row"><label><input type="checkbox">Practiced out loud</label></div>
     </div>
@@ -1553,12 +1609,12 @@
     <div class="block-head"><span class="block-num">07</span><h2>Questions to ask them</h2></div>
     <p class="block-intro">Closing well matters as much as opening well. Three or four of these, not all six.</p>
     <ul class="ask-list">
-      <li><strong>"What does the channel partner ecosystem actually look like in the AURA PACA territory?"</strong>Shows she's already thinking about the one gap in her CV.</li>
-      <li><strong>"What does success look like for someone in this seat after six months, and after a year?"</strong></li>
-      <li><strong>"Can you tell me more about the FLIGHT onboarding program — what does the first few months actually involve?"</strong>Named directly on the job posting; shows she read it closely.</li>
-      <li><strong>"Where do you see the biggest opportunity in this territory right now?"</strong></li>
-      <li><strong>"How does the sales team work day-to-day with the channel partner team?"</strong></li>
-      <li><strong>"What made the last person in this role successful — or what would you change?"</strong></li>
+      <li><strong>"What does the channel partner ecosystem actually look like in the AURA PACA territory?"</strong><div class="fr-text">« À quoi ressemble concrètement l'écosystème de partenaires sur le territoire AURA PACA ? »</div>Shows she's already thinking about the one gap in her CV.</li>
+      <li><strong>"What does success look like for someone in this seat after six months, and after a year?"</strong><div class="fr-text">« À quoi ressemble la réussite à ce poste après six mois, puis après un an ? »</div></li>
+      <li><strong>"Can you tell me more about the FLIGHT onboarding program — what does the first few months actually involve?"</strong><div class="fr-text">« Pouvez-vous m'en dire plus sur le programme d'intégration FLIGHT — en quoi consistent concrètement les premiers mois ? »</div>Named directly on the job posting; shows she read it closely.</li>
+      <li><strong>"Where do you see the biggest opportunity in this territory right now?"</strong><div class="fr-text">« Où voyez-vous la plus grande opportunité sur ce territoire en ce moment ? »</div></li>
+      <li><strong>"How does the sales team work day-to-day with the channel partner team?"</strong><div class="fr-text">« Comment l'équipe commerciale travaille-t-elle au quotidien avec l'équipe partenaires ? »</div></li>
+      <li><strong>"What made the last person in this role successful — or what would you change?"</strong><div class="fr-text">« Qu'est-ce qui a fait le succès de la personne précédente à ce poste — ou que changeriez-vous ? »</div></li>
     </ul>
   </section>
 
